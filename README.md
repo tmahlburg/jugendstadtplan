@@ -51,3 +51,13 @@ Nicht, dass ich das alles gelesen hätte. Ich dachte nur es wär vielleicht nüt
 
 **github actions:**
 - [offizielle GitHub Actions Doku](https://help.github.com/en/actions) - unsere CI
+
+## CSS Framework Vorschläge
+
+- [Pure](https://purecss.io) - sehr minimal, aber responsive
+- [Picnic](https://picnicss.com) - schicke Animationen
+- [mini](https://minicss.org) - midweight, zwischen pure und bootstrap
+- [wing](https://kbrsh.github.io/wing/) - wirkt ziemlich intuitiv (Doku umfasst nur eine Seite)
+- [chota](https://jenil.github.io/chota/) - sehr einfach zu verwenden (Doku umfasst nur eine Seite)
+- [Bootstrap](https://getbootstrap.com) - de-facto Standard, aber vielleicht ein bisschen overkill für uns
+- [Spectre](https://picturepan2.github.io/spectre/index.html) - viele Funktionen, aber trotzdem noch relativ klein
