@@ -15,19 +15,17 @@
 </head>
 <body>
     <div class="container">
-        <div class="coloumns">
     	<!-- Header -->
 		<header class="navbar">
   			<section class="navbar-section">
     			<a href="/" class="navbar-brand mr-2">Jugendstadtplan</a>
     			<a href="/Orte/" class="btn btn-link">Alle Orte</a>
+    			<a href="/Über/" class="btn btn-link">Über</a>
     			<a href="/Impressum/" class="btn btn-link">Impressum</a>
   			</section>
 		</header>
-
 		<!-- Content -->
 		{% block content %}{% endblock %}
-        </div>
 	</div>
 	<!-- JavaScript -->
 	<script src="{% static 'leaflet/leaflet.js' %}"></script>
