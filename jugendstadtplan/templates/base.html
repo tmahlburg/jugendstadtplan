@@ -12,9 +12,10 @@
 	<link rel="stylesheet" href="{% static 'spectre.css/spectre-exp.min.css' %}">
 	<!-- Leaflet -->
 	<link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">
+	<script src="{% static 'leaflet/leaflet.js' %}"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="position:fixed;z-index:999;background:white">
     	<!-- Header -->
 		<header class="navbar">
   			<section class="navbar-section">
@@ -24,10 +25,8 @@
     			<a href="/Impressum/" class="btn btn-link">Impressum</a>
   			</section>
 		</header>
-		<!-- Content -->
-		{% block content %}{% endblock %}
 	</div>
-	<!-- JavaScript -->
-	<script src="{% static 'leaflet/leaflet.js' %}"></script>
+	<!-- Content -->
+	{% block content %}{% endblock %}
 </body>
 </html>
