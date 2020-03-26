@@ -15,18 +15,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="coloumns">
     	<!-- Header -->
 		<header class="navbar">
   			<section class="navbar-section">
-    			<div class="input-group input-inline">
-    	  			<input class="form-input" type="text" placeholder="Suche...">
-    	  			<button class="btn btn-primary input-group-btn">Suchen</button>
-    			</div>
-  			</section>
-  			<section class="navbar-center">
     			<a href="/" class="navbar-brand mr-2">Jugendstadtplan</a>
-  			</section>
-  			<section class="navbar-section">
     			<a href="/Orte/" class="btn btn-link">Alle Orte</a>
     			<a href="/Impressum/" class="btn btn-link">Impressum</a>
   			</section>
@@ -34,8 +27,8 @@
 
 		<!-- Content -->
 		{% block content %}{% endblock %}
-
-	<\div>
+        </div>
+	</div>
 	<!-- JavaScript -->
 	<script src="{% static 'leaflet/leaflet.js' %}"></script>
 </body>
