@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="de">
+<head>
+	<title>{% block title %}Jugendstadtplan{% endblock %}</title>
+	<!-- Required meta tags -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Spectre.css -->
+	<link rel="stylesheet" href="{% static 'spectre.css/spectre.min.css' %}">
+	<link rel="stylesheet" href="{% static 'spectre.css/spectre-icons.min.css' %}">
+	<link rel="stylesheet" href="{% static 'spectre.css/spectre-exp.min.css' %}">
+	<!-- Leaflet -->
+	<link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">
+</head>
+<body>
+    <div class="container">
+    	<!-- Header -->
+		<header class="navbar">
+  			<section class="navbar-section">
+    			<div class="input-group input-inline">
+    	  			<input class="form-input" type="text" placeholder="Suche...">
+    	  			<button class="btn btn-primary input-group-btn">Suchen</button>
+    			</div>
+  			</section>
+  			<section class="navbar-center">
+    			<a href="/" class="navbar-brand mr-2">Jugendstadtplan</a>
+  			</section>
+  			<section class="navbar-section">
+    			<a href="/Orte/" class="btn btn-link">Alle Orte</a>
+    			<a href="/Impressum/" class="btn btn-link">Impressum</a>
+  			</section>
+		</header>
+
+		<!-- Content -->
+		{% block content %}{% endblock %}
+
+	<\div>
+	<!-- JavaScript -->
+	<script src="{% static 'leaflet/leaflet.js' %}"></script>
+</body>
+</html>
