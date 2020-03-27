@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('impressum/', TemplateView.as_view(template_name='impressum.html')),
+    path('about/', TemplateView.as_view(template_name='about.html')),
     path('map/', include('map.urls')),
     path('', include('map.urls')),
 ]
