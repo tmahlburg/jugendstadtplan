@@ -60,4 +60,4 @@ Nicht, dass ich das alles gelesen hätte. Ich dachte nur es wär vielleicht nüt
 - [wing](https://kbrsh.github.io/wing/) - wirkt ziemlich intuitiv (Doku umfasst nur eine Seite)
 - [chota](https://jenil.github.io/chota/) - sehr einfach zu verwenden (Doku umfasst nur eine Seite)
 - [Bootstrap](https://getbootstrap.com) - de-facto Standard, aber vielleicht ein bisschen overkill für uns
-- [Spectre](https://picturepan2.github.io/spectre/index.html) - viele Funktionen, aber trotzdem noch relativ klein
+- [**Spectre**](https://picturepan2.github.io/spectre/index.html) - viele Funktionen, aber trotzdem noch relativ klein
