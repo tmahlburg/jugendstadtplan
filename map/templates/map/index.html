@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Jugendstadplan{% endblock %}
+{% block navbar_position %}fixed{% endblock %}
 
 {% block content %}
-
 	<div id="map" style="height:100vh;"></div>
 	<script src="{% static 'map/script.js' %}"></script>
 	{% if all_locations %}
