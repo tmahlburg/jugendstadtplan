@@ -7,11 +7,9 @@ class Location(models.Model):
     """
     title = models.CharField(max_length=100)
 
-    # location on the world using latitude (x), longitude (y) and altitude(z)
-    # (altitude in relation to sea level)
+    # location on the world using latitude (x) and longitude (y)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    altitude = models.SmallIntegerField(default=0)
 
     # if the location has opening hours, set this to true and set the following
     # fields
