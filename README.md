@@ -1,6 +1,6 @@
 # jugendstadtplan
   *beste projekt*
-  
+
 ## Vorraussetzungen
 mit Docker: Docker, docker-compose
 
@@ -11,7 +11,7 @@ nativ: python3, pip3, pipenv
 ```
 $ git clone https://github.com/tmahlburg/jugendstadtplan.git  # oder:
 $ git clone git@github.com:tmahlburg/jugendstadtplan.git
-  
+
 $ cd jugendstadtplan
 ```
 **Docker**:
@@ -41,7 +41,7 @@ Nicht, dass ich das alles gelesen hätte. Ich dachte nur es wär vielleicht nüt
 **django:**
 
 - [offizelle Django Doku](https://docs.djangoproject.com/en/3.0/)
-- [unittests](https://docs.docker.com/install/#supported-platforms) - Dokumentation für die automatisierten Tests, die übrigens nach jedem push / pull request auf den Masterbranch ausgeführt werden
+- [unittests](https://docs.djangoproject.com/en/3.0/topics/testing/) - Dokumentation für die automatisierten Tests, die übrigens nach jedem push / pull request auf den Masterbranch ausgeführt werden
 
 **docker:**
 
