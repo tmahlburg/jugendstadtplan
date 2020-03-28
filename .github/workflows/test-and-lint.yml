@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  
+
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -36,4 +36,6 @@ jobs:
         flake8 map --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run Tests
       run: |
+        python manage.py makemigrations
+        python manage.py migrate
         python manage.py test
