@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="coloumns">
+			<div class="coloumn col-6 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+				<h1>Liste aller Orte in Schneisbald</h1>
+        {% if all_locations %}
+
+        <ul>
+          {% for location in all_locations %}
+          <li>{{location.title}}, {{location.latitude}}, {{location.longitude}}
+          </li>
+
+          {% endfor %}
+        </ul>
+
+        {% endif %}
+		</div>
+	</div>
+{% endblock %}
