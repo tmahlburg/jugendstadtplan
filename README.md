@@ -24,7 +24,7 @@ $ pipenv install
 $ pipenv shell
 $ python manage.py makemigrations
 $ python manage.py migrate
-$ python manage.py runserver 0:8000
+$ python manage.py runserver
 ```
 *(nur eins von beidem ist nötig)*
 
