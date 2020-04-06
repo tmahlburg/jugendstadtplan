@@ -16,19 +16,21 @@ $ cd jugendstadtplan
 ```
 **Docker**:
 
-```# docker-compose up```
+```
+# docker-compose up
+```
 
 **nativ**:
 ```
 $ pipenv install
 $ pipenv shell
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py runserver
+$ python3 manage.py migrate
+$ ./manage.sh setup_admin
+$ python3 manage.py runserver
 ```
 *(nur eins von beidem ist nötig)*
 
-Die Seite ist dann unter http://localhost:8000 zu erreichen.
+Die Seite ist dann unter http://localhost:8000 zu erreichen. Außerdem wird ein user account mit den Anmeldedaten admin:admin angelegt. NUR FÜR ENTWICKLUNGSZWECKE!
 
 ## Links zu guter Dokumentation
 
