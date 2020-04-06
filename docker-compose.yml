@@ -5,11 +5,7 @@ version: '3'
 services:
   web:
     build: .
-    command: sh -c "
-        /usr/bin/python manage.py makemigrations && \
-        /usr/bin/python manage.py migrate && \
-        /usr/bin/python manage.py runserver 0.0.0.0:8000 \
-        "
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
