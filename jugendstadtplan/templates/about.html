@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Über{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="coloumns">
+            <div class="coloumn col-6 col-xl-8 col-lg-9 col-md-10 col-sm-12 col-xs-12 col-mx-auto">
+                <h1>Über den Stadtplan</h1>
+                <p>Dies ist Text über das Projekt</p>
+                <h2>FAQ</h2>
+                <div class="accordion">
+                    <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden>
+                    <label class="accordion-header" for="accordion-1">
+                    <i class="icon icon-arrow-right mr-1"></i>
+                    Welche Orte kommen für den Plan in Frage?
+                    </label>
+                    <div class="accordion-body">
+                    Nur die Besten!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
