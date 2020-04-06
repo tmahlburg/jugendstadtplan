@@ -16,15 +16,17 @@ $ cd jugendstadtplan
 ```
 **Docker**:
 
-```# docker-compose up```
+```
+# docker-compose up
+```
 
 **nativ**:
 ```
 $ pipenv install
 $ pipenv shell
-$ python manage.py migrate
-$ ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
-$ python manage.py runserver
+$ python3 manage.py migrate
+$ ./manage.sh setup_admin
+$ python3 manage.py runserver
 ```
 *(nur eins von beidem ist nötig)*
 
