@@ -22,13 +22,13 @@ $ cd jugendstadtplan
 ```
 $ pipenv install
 $ pipenv shell
-$ python manage.py makemigrations
 $ python manage.py migrate
+$ ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
 $ python manage.py runserver
 ```
 *(nur eins von beidem ist nötig)*
 
-Die Seite ist dann unter http://localhost:8000 zu erreichen.
+Die Seite ist dann unter http://localhost:8000 zu erreichen. Außerdem wird ein user account mit den Anmeldedaten admin:admin angelegt. NUR FÜR ENTWICKLUNGSZWECKE!
 
 ## Links zu guter Dokumentation
 
