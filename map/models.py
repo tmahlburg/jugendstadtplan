@@ -13,6 +13,10 @@ class Location(models.Model):
 
     # category of the location
     category = models.CharField(max_length=100)
+
+    # possible image
+    has_picture = models.BooleanField(default=False)
+    picture = models.ImageField(upload_to='pictures/')
     # if the location has opening hours, set this to true and set the following
     # fields
 
