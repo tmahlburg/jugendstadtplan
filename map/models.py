@@ -25,10 +25,10 @@ class Location(models.Model):
     # possible address
     has_address = models.BooleanField(default=False)
     address = models.TextField()
+
     # if the location has opening hours, set this to true and set the following
     # fields
 
     # has_opening_hours = models.BooleanField(default=False)
+    # opening_hours = models.TextField()
     # TODO: Opening Hours: per day, maybe via an api?
-
-    # TODO: Image?
