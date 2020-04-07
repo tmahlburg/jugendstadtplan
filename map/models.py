@@ -11,6 +11,8 @@ class Location(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
 
+    # category of the location
+    category = models.CharField(max_length=100)
     # if the location has opening hours, set this to true and set the following
     # fields
 
