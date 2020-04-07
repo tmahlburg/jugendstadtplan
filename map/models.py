@@ -5,7 +5,7 @@ class Location(models.Model):
     """
     Data model for the locations and places on the map.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
 
     # location on the world using latitude (x) and longitude (y)
     latitude = models.FloatField()
