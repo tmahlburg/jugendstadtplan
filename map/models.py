@@ -17,6 +17,14 @@ class Location(models.Model):
     # possible image
     has_picture = models.BooleanField(default=False)
     picture = models.ImageField(upload_to='pictures/')
+
+    # possible homepage
+    has_homepage = models.BooleanField(default=False)
+    homepage = models.URLField()
+
+    # possible address
+    has_address = models.BooleanField(default=False)
+    address = models.TextField()
     # if the location has opening hours, set this to true and set the following
     # fields
 
