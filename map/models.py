@@ -16,7 +16,9 @@ class Location(models.Model):
     category = models.CharField(max_length=100)
 
     # possible image
-    picture = models.ImageField(upload_to='pictures/', null=True, blank=True)
+    picture = models.ImageField(upload_to='static/pictures/',
+                                null=True,
+                                blank=True)
 
     # possible homepage
     homepage = models.URLField(null=True, blank=True)
