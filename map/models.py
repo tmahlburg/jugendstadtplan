@@ -11,24 +11,19 @@ class Location(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
 
+    # TODO: have a extensible list of locations (-> drop down menu)
     # category of the location
     category = models.CharField(max_length=100)
 
     # possible image
-    has_picture = models.BooleanField(default=False)
-    picture = models.ImageField(upload_to='pictures/', default=None)
+    picture = models.ImageField(upload_to='pictures/', null=True, blank=True)
 
     # possible homepage
-    has_homepage = models.BooleanField(default=False)
-    homepage = models.URLField(default=None)
+    homepage = models.URLField(null=True, blank=True)
 
     # possible address
-    has_address = models.BooleanField(default=False)
-    address = models.TextField(default=None)
+    address = models.TextField(null=True, blank=True)
 
-    # if the location has opening hours, set this to true and set the following
-    # fields
-
-    # has_opening_hours = models.BooleanField(default=False)
-    # opening_hours = models.TextField()
-    # TODO: Opening Hours: per day, maybe via an api?
+    # possible opening hours, for now a simple text field
+    # TODO: find a more sophisticated, semantically charged solution
+    opening_hours = models.TextField(null=True, blank=True)
