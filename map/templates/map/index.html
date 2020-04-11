@@ -12,11 +12,14 @@
 			var marker = [];
 			{% for location in all_locations %}
 				marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
-				popup_content = '<strong>{{ location.title }}</strong><hr>'
+				popup_content = '<container style="width:10em">'
+								+ '<img src="{{ location.picture  }}" style="width:100%">'
+								+ '<strong>{{ location.title }}</strong><hr>'
 								+ '{{ location.category  }}<br>'
 								+ '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
 								+ '{{ location.address|linebreaksbr  }}<br>'
 								+ '{{ location.opening_hours  }}'
+								+ '</container>'
 
 				marker[i].bindPopup(popup_content);
 				i++;
