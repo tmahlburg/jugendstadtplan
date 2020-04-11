@@ -13,12 +13,20 @@
 			{% for location in all_locations %}
 				marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
 				popup_content = '<container style="width:10em">'
+								{% if location.picture %}
 								+ '<img src="{{ location.picture  }}" style="width:100%">'
+								{% endif %}
 								+ '<strong>{{ location.title }}</strong><hr>'
 								+ '{{ location.category  }}<br>'
+								{% if location.homepage %}
 								+ '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
+								{% endif %}
+								{% if location.address %}
 								+ '{{ location.address|linebreaksbr  }}<br>'
+								{% endif %}
+								{% if location.opening_hours %}
 								+ '{{ location.opening_hours  }}'
+								{% endif %}
 								+ '</container>'
 
 				marker[i].bindPopup(popup_content);
