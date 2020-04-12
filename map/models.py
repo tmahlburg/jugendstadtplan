@@ -5,16 +5,27 @@ class Location(models.Model):
     """
     Data model for the locations and places on the map.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, unique=True)
 
     # location on the world using latitude (x) and longitude (y)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
-    # if the location has opening hours, set this to true and set the following
-    # fields
+    # TODO: have a extensible list of locations (-> drop down menu)
+    # category of the location
+    category = models.CharField(max_length=100)
 
-    # has_opening_hours = models.BooleanField(default=False)
-    # TODO: Opening Hours: per day, maybe via an api?
+    # possible image
+    picture = models.ImageField(upload_to='static/pictures/',
+                                null=True,
+                                blank=True)
 
-    # TODO: Image?
+    # possible homepage
+    homepage = models.URLField(null=True, blank=True)
+
+    # possible address
+    address = models.TextField(null=True, blank=True)
+
+    # possible opening hours, for now a simple text field
+    # TODO: find a more sophisticated, semantically charged solution
+    opening_hours = models.TextField(null=True, blank=True)
