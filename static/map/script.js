@@ -1,7 +1,7 @@
 var map;
 
-function setup_map(viewpoint = [54.095166, 13.3710154]) {
-    map = L.map('map', {zoomControl: false}).setView(viewpoint, 17);
+function setup_map(viewpoint = [54.095166, 13.3710154], zoom = 13) {
+    map = L.map('map', {zoomControl: false}).setView(viewpoint, 13);
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
