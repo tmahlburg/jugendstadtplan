@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 from map.models import Location
+from map.views import str_to_viewpoint
 
 
 class LocationTestCase(TestCase):
@@ -30,3 +31,13 @@ class LocationTestCase(TestCase):
         self.assertEqual(zero.longitude, 0.0001)
         self.assertEqual(zero.category, "Test")
         self.assertEqual(zero.homepage, "http://startpage.com")
+
+
+class TestMap(TestCase):
+    """
+    Checks helper functions of the map app.
+    """
+    def test_str_to_viewpoint(self):
+        self.assertEqual(str_to_viewpoint('5.12,0.14'), [5.12, 0.14])
+        self.assertEqual(str_to_viewpoint('-10.11,-9.3'), [-10.11, -9.3])
+        self.assertEqual(str_to_viewpoint('2,-9'), [2, -9])
