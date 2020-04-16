@@ -8,6 +8,7 @@
 	<script src="{% static 'map/script.js' %}"></script>
 	{% if all_locations %}
 		<script>
+			setup_map({{ viewpoint  }});
 			var i = 0;
 			var marker = [];
 			{% for location in all_locations %}
