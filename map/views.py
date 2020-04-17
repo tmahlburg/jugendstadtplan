@@ -10,7 +10,9 @@ def index(request, viewpoint='54.095166,13.3710154'):
         viewpoint = str_to_viewpoint(viewpoint)
     except ValueError:
         messages.error(request,
-                       'Die angegebenen Koordinaten sind nicht erreichbar.')
+                       'Die angegebenen Koordinaten sind nicht erreichbar.\n'
+                       + 'Karte wird auf den Koordinaten 0, 0 zentriert.')
+        viewpoint = [0, 0]
     context = {'all_locations': all_locations,
                'viewpoint': viewpoint}
     return render(request,
