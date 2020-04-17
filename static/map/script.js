@@ -17,3 +17,7 @@ function onMapClick(e) {
         .setContent("Aktuelle Position: " + e.latlng.toString())
         .openOn(map);
 }
+
+function close_toast(btn){
+	((btn.parentNode).parentNode).removeChild(btn.parentNode);
+}
