@@ -41,3 +41,7 @@ class TestMap(TestCase):
         self.assertEqual(str_to_viewpoint('5.12,0.14'), [5.12, 0.14])
         self.assertEqual(str_to_viewpoint('-10.11,-9.3'), [-10.11, -9.3])
         self.assertEqual(str_to_viewpoint('2,-9'), [2, -9])
+        with self.assertRaises(ValueError):
+            str_to_viewpoint('100.34,1')
+        with self.assertRaises(ValueError):
+            str_to_viewpoint('1,-90.01')
