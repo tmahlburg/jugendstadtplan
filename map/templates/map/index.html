@@ -4,35 +4,44 @@
 {% block navbar_position %}fixed{% endblock %}
 
 {% block content %}
-	<div id="map" style="height:100vh;"></div>
-	<script src="{% static 'map/script.js' %}"></script>
-	{% if all_locations %}
-		<script>
-			setup_map({{ viewpoint  }});
-			var i = 0;
-			var marker = [];
-			{% for location in all_locations %}
-				marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
-				popup_content = '<container style="width:10em">'
-								{% if location.picture %}
-								+ '<img src="{{ location.picture  }}" style="width:100%">'
-								{% endif %}
-								+ '<strong>{{ location.title }}</strong><hr>'
-								+ '{{ location.category  }}<br>'
-								{% if location.homepage %}
-								+ '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
-								{% endif %}
-								{% if location.address %}
-								+ '{{ location.address|linebreaksbr  }}<br>'
-								{% endif %}
-								{% if location.opening_hours %}
-								+ '{{ location.opening_hours  }}'
-								{% endif %}
-								+ '</container>'
+    <script src="{% static 'map/script.js' %}"></script>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position: fixed;z-index: 999;">
+            <button class="btn btn-clear float-right" onclick="close_toast(this)"></button>
+            {{ message  }}
+        </div>
+        {% endfor %}
 
-				marker[i].bindPopup(popup_content);
-				i++;
-			{% endfor %}
-		</script>
-	{% endif %}
+    {% endif %}
+    <div id="map" style="height:100vh;"></div>
+    {% if all_locations %}
+        <script>
+            setup_map({{ viewpoint  }});
+            var i = 0;
+            var marker = [];
+            {% for location in all_locations %}
+                marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
+                popup_content = '<container style="width:10em">'
+                                {% if location.picture %}
+                                + '<img src="{{ location.picture  }}" style="width:100%">'
+                                {% endif %}
+                                + '<strong>{{ location.title }}</strong><hr>'
+                                + '{{ location.category  }}<br>'
+                                {% if location.homepage %}
+                                + '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
+                                {% endif %}
+                                {% if location.address %}
+                                + '{{ location.address|linebreaksbr  }}<br>'
+                                {% endif %}
+                                {% if location.opening_hours %}
+                                + '{{ location.opening_hours  }}'
+                                {% endif %}
+                                + '</container>'
+
+                marker[i].bindPopup(popup_content);
+                i++;
+            {% endfor %}
+        </script>
+    {% endif %}
 {% endblock %}
