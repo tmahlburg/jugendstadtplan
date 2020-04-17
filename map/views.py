@@ -1,11 +1,16 @@
 from django.shortcuts import render
+from django.contrib import messages
 
 from .models import Location
 
 
 def index(request, viewpoint='54.095166,13.3710154'):
     all_locations = Location.objects.all().values()
-    viewpoint = str_to_viewpoint(viewpoint)
+    try:
+        viewpoint = str_to_viewpoint(viewpoint)
+    except ValueError:
+        messages.error(request,
+                       'Die angegebenen Koordinaten sind nicht erreichbar.')
     context = {'all_locations': all_locations,
                'viewpoint': viewpoint}
     return render(request,
@@ -23,5 +28,6 @@ def str_to_viewpoint(viewpoint):
     viewpoint = viewpoint.split(',')
     # convert str to float
     viewpoint = [float(coord) for coord in viewpoint]
-
+    if (abs(viewpoint[0]) > 90 or abs(viewpoint[1]) > 90):
+        raise ValueError('Viewpoint is not composed of valid coordinates.')
     return viewpoint
