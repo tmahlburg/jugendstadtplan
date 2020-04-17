@@ -3,21 +3,33 @@
 {% block title %}Alle Orte{% endblock %}
 
 {% block content %}
-	<div class="container">
-		<div class="coloumns">
-			<div class="coloumn col-6 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
-				<h1>Liste aller Orte in Schneisbald</h1>
-        {% if all_locations %}
-
-        <ul>
-          {% for location in all_locations %}
-          <li>{{location.title}}, {{location.latitude}}, {{location.longitude}}
-          </li>
-
-          {% endfor %}
-        </ul>
-
-        {% endif %}
-		</div>
-	</div>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+                <h1>Alle Orte</h1>
+                {% if all_locations %}
+                    {% for location in all_locations %}
+                        <div class="divider"></div>
+                        <div class="columns">
+                            {% if location.picture %}<div class="column col-9">{% endif %}
+                                <h3>{{ location.title }}</h3>
+                                <i>{{ location.category }}</i>
+                                <ul style="list-style-type:none">
+                                    {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
+                                    {% if location.opening_hours %}<li> Öffnungszeiten: {{ location.opening_hours  }}</li>{% endif %}
+                                    {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
+                                    <li><a href="../{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
+                                </ul>
+                            {% if location.picture %}
+                            </div>
+                            <div class="column col-3">
+                                <img src="../{{ location.picture  }}" class="img-responsive" alt="{{ location.title  }}">
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
