@@ -28,6 +28,17 @@
                             {% endif %}
                         </div>
                     {% endfor %}
+                {% else %}
+                    <div class="empty">
+                        <div class="empty-icon">
+                            <i class="icon icon-people"></i>
+                        </div>
+                        <p class="empty-title h5">Es wurden noch keine Orte hinzugefügt...</p>
+                        <p class="empty-subtitle">Das kann man aber ändern!</p>
+                        <div class="empty-action">
+                            <button class="btn btn-primary">Ort vorschlagen</button>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
