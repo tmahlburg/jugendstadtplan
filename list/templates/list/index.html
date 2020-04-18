@@ -12,14 +12,16 @@
                         <div class="divider"></div>
                         <div class="columns">
                             {% if location.picture %}<div class="column col-9">{% endif %}
+                                <section>
                                 <h3>{{ location.title }}</h3>
-                                <i>{{ location.category }}</i>
                                 <ul style="list-style-type:none">
+                                    <li><i>{{ location.category }}</i></li>
                                     {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
                                     {% if location.opening_hours %}<li> Öffnungszeiten: {{ location.opening_hours  }}</li>{% endif %}
                                     {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
                                     <li><a href="../{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
                                 </ul>
+                                </section>
                             {% if location.picture %}
                             </div>
                             <div class="column col-3">
