@@ -1,23 +1,81 @@
 {% extends 'base.html' %}
 
-{% block title %}Liste{% endblock %}
+{% block title %}Alle Orte{% endblock %}
 
 {% block content %}
-	<div class="container">
-		<div class="coloumns">
-			<div class="coloumn col-6 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
-				<h1>Liste aller Orte in Schneisbald</h1>
-        {% if all_locations %}
-
-        <ul>
-          {% for location in all_locations %}
-          <li>{{location.title}}, {{location.latitude}}, {{location.longitude}}
-          </li>
-
-          {% endfor %}
+    <div class="container">
+        <div class="columns">
+            <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+                <h1>Alle Orte</h1>
+                {% if locations %}
+                    {% for location in locations %}
+                        <div class="divider"></div>
+                        <div class="columns">
+                            {% if location.picture %}<div class="column col-8">{% endif %}
+                                <section>
+                                <h3>{{ location.title }}</h3>
+                                <ul style="list-style-type:none">
+                                    <li><i>{{ location.category }}</i></li>
+                                    {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
+                                    {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
+                                    {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
+                                    <li><a href="/map/{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
+                                </ul>
+                                </section>
+                            {% if location.picture %}
+                            </div>
+                            <div class="column col-4">
+                                <img src="../{{ location.picture  }}" class="img-responsive" alt="{{ location.title  }}">
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty">
+                        <div class="empty-icon">
+                            <i class="icon icon-location"></i>
+                        </div>
+                        <p class="empty-title h5">Es wurden noch keine Orte hinzugefügt...</p>
+                        <p class="empty-subtitle">Das kann man aber ändern!</p>
+                        <div class="empty-action">
+                            <button class="btn btn-primary">Ort vorschlagen</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if locations.has_other_pages %}
+        <ul class="pagination" style="display:flex;justify-content:center;align-items:center;">
+            {% if locations.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ locations.previous_page_number }}">
+                        <i class="icon icon-arrow-left"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#"><i class="icon icon-arrow-left"></i></a>
+                </li>
+            {% endif %}
+            {% for i in locations.paginator.page_range %}
+                {% if locations.number == i %}
+                    <li class="page-item active"><a href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if locations.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ locations.next_page_number }}">
+                        <i class="icon icon-arrow-right"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#"><i class="icon icon-arrow-right"></i></a>
+                </li>
+            {% endif %}
         </ul>
-
-        {% endif %}
-		</div>
-	</div>
+    {% endif %}
 {% endblock %}
