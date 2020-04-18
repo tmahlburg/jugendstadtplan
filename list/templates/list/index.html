@@ -43,4 +43,37 @@
             </div>
         </div>
     </div>
+    {% if locations.has_other_pages %}
+        <ul class="pagination" style="display:flex;justify-content:center;align-items:center;">
+            {% if locations.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ locations.previous_page_number }}">
+                        <i class="icon icon-arrow-left"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#"><i class="icon icon-arrow-left"></i></a>
+                </li>
+            {% endif %}
+            {% for i in locations.paginator.page_range %}
+                {% if locations.number == i %}
+                    <li class="page-item active"><a href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if locations.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ locations.next_page_number }}">
+                        <i class="icon icon-arrow-right"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a href="#"><i class="icon icon-arrow-right"></i></a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
 {% endblock %}
