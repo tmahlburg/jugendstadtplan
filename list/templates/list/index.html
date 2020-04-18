@@ -19,7 +19,7 @@
                                     {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
                                     {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
                                     {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
-                                    <li><a href="../{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
+                                    <li><a href="/map/{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
                                 </ul>
                                 </section>
                             {% if location.picture %}
