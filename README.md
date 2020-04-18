@@ -49,4 +49,10 @@ Die Seite ist dann unter http://localhost:8000 zu erreichen. Außerdem wird ein 
 - [Installationsanleitungen](https://docs.docker.com/install/#supported-platforms)
 
 **github actions:**
-- [offizielle GitHub Actions Doku](https://help.github.com/en/actions)
+- [GitHub Actions Doku](https://help.github.com/en/actions)
+
+**Spectre.css:**
+- [Spectre.css Doku](https://picturepan2.github.io/spectre/getting-started.html)
+
+**Leaflet:**
+- [Leaflet Doku](https://leafletjs.com/reference-1.6.0.html)
