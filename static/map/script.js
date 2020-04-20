@@ -14,7 +14,7 @@ var popup = L.popup();
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
-        .setContent("Aktuelle Position: " + e.latlng.toString())
+        .setContent("<a href=\"/suggestion/?lat=" + e.latlng.lat + "&lng=" + e.latlng.lng + "\">Hier einen neuen Ort vorschlagen</a>")
         .openOn(map);
 }
 
