@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    lat = request.GET.get('lat')
+    lng = request.GET.get('lng')
+    context = {'lat': lat,
+               'lng': lng}
+    return render(request,
+                  'suggestion/index.html',
+                  context)
