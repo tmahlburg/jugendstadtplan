@@ -36,8 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'widget_tweaks',
+
     'map.apps.MapConfig',
     'list.apps.ListConfig',
+    'suggestion.apps.SuggestionConfig',
 ]
 
 MIDDLEWARE = [
