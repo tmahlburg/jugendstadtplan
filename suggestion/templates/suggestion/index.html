@@ -20,6 +20,10 @@
 	                                <p class="help">{{ field.help_text|safe }}</p>
 	                            {% endif %}
 	                        </div>
+	                    {% elif field.label == "Latitude" %}
+							<input type="hidden" name="latitude" value="{{ lat  }}" />
+	                    {% elif field.label == "Longitude" %}
+							<input type="hidden" name="longitude" value="{{ lng  }}" />
                     	{% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-primary">Vorschlagen</button>
