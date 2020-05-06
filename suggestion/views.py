@@ -8,7 +8,7 @@ def index(request):
     lat = request.GET.get('lat')
     lng = request.GET.get('lng')
     if request.method == 'POST':
-        form = LocationForm(request.POST)
+        form = LocationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return redirect('/map')
