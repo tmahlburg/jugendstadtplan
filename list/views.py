@@ -9,7 +9,7 @@ def index(request):
     location_list = Location.objects.all().values()
     there_are_public_locations = False
     for location in location_list:
-        if location.is_public:
+        if location['is_public']:
             there_are_public_locations = True
     paginator = Paginator(location_list, 10)
     try:
