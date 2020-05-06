@@ -7,7 +7,7 @@
         <div class="columns">
             <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
                 <h1>Neuen Ort vorschlagen</h1>
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     {% for field in form %}
