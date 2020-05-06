@@ -7,8 +7,7 @@
         <div class="columns">
             <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
                 <h1>Alle Orte</h1>
-                <!-- TODO: show emtpy state, if there is no public location -->
-                {% if locations %}
+                {% if there_are_public_locations %}
                     {% for location in locations %}
                     	{% if location.is_public %}
 	                        <div class="divider"></div>
