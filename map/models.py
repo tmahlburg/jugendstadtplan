@@ -29,3 +29,5 @@ class Location(models.Model):
     # possible opening hours, for now a simple text field
     # TODO: find a more sophisticated, semantically charged solution
     opening_hours = models.TextField(null=True, blank=True)
+
+    is_public = models.BooleanField(default=False)
