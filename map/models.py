@@ -1,6 +1,16 @@
 from django.db import models
 
 
+class LocationCategory(models.Model):
+    """
+    Data model for the categories of the locations and places.
+    """
+    title = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return "{}".format(self.title)
+
+
 class Location(models.Model):
     """
     Data model for the locations and places on the map.
@@ -13,7 +23,7 @@ class Location(models.Model):
 
     # TODO: have a extensible list of locations (-> drop down menu)
     # category of the location
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey(LocationCategory, on_delete=models.CASCADE)
 
     # possible image
     picture = models.ImageField(upload_to='static/pictures/',
