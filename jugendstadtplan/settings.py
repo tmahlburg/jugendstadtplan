@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    'tagging',
 
     'map.apps.MapConfig',
     'list.apps.ListConfig',
@@ -126,3 +127,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Tagging settings
+FORCE_LOWERCASE_TAGS = True
