@@ -29,7 +29,7 @@ class LocationTestCase(TestCase):
         self.assertEqual(regular.homepage, "http://github.com")
         self.assertEqual(zero.latitude, -0.0001)
         self.assertEqual(zero.longitude, 0.0001)
-        self.assertEqual(zero.tags, "ein_test, zwei_test, drei_test")
+        self.assertEqual(zero.tags, "ein_test zwei_test drei_test")
         self.assertEqual(zero.homepage, "http://startpage.com")
 
 
