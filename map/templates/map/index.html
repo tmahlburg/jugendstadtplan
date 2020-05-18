@@ -20,7 +20,7 @@
     		{% if all_locations %}
 	            var i = 0;
 	            var marker = [];
-	            {% for location in all_locations %}
+            	{% for location in all_locations %}
 	            	{% if location.is_public %}
 			            marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
 			            popup_content = '<container style="width:10em">'
@@ -28,7 +28,7 @@
 			                            + '<img src="{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
 			                            {% endif %}
 			                            + '<strong>{{ location.title }}</strong><hr>'
-			                            + '{{ location.category  }}<br>'
+			                            + 'Tags: <i>{{ location.tags  }}</i><br>'
 			                            {% if location.homepage %}
 			                            + '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
 			                            {% endif %}
