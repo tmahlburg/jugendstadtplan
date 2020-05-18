@@ -16,7 +16,7 @@
 	                                <section>
 	                                <h3>{{ location.title }}</h3>
 	                                <ul style="list-style-type:none">
-	                                    <li><i>{{ location.category }}</i></li>
+	                                    <li><i>Tags: {{ location.tags }}</i></li>
 	                                    {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
 	                                    {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
 	                                    {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}

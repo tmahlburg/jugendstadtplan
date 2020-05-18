@@ -12,12 +12,12 @@ class LocationTestCase(TestCase):
         Location.objects.create(title="Test regular values",
                                 latitude=12.3587,
                                 longitude=5.1234,
-                                category="Test",
+                                tags="test1, test2, test3",
                                 homepage="http://github.com")
         Location.objects.create(title="Test near zero",
                                 latitude=-0.0001,
                                 longitude=0.0001,
-                                category="Test",
+                                tags="ein_test zwei_test drei_test",
                                 homepage="http://startpage.com")
 
     def test_objects_properly_created(self):
@@ -25,11 +25,11 @@ class LocationTestCase(TestCase):
         zero = Location.objects.get(title="Test near zero")
         self.assertEqual(regular.latitude, 12.3587)
         self.assertEqual(regular.longitude, 5.1234)
-        self.assertEqual(regular.category, "Test")
+        self.assertEqual(regular.tags, "test1, test2, test3")
         self.assertEqual(regular.homepage, "http://github.com")
         self.assertEqual(zero.latitude, -0.0001)
         self.assertEqual(zero.longitude, 0.0001)
-        self.assertEqual(zero.category, "Test")
+        self.assertEqual(zero.tags, "ein_test zwei_test drei_test")
         self.assertEqual(zero.homepage, "http://startpage.com")
 
 
