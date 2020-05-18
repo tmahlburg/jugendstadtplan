@@ -25,11 +25,11 @@ class LocationTestCase(TestCase):
         zero = Location.objects.get(title="Test near zero")
         self.assertEqual(regular.latitude, 12.3587)
         self.assertEqual(regular.longitude, 5.1234)
-        self.assertEqual(regular.tags, "test1 test2 test3")
+        self.assertEqual(regular.tags, "test1, test2, test3")
         self.assertEqual(regular.homepage, "http://github.com")
         self.assertEqual(zero.latitude, -0.0001)
         self.assertEqual(zero.longitude, 0.0001)
-        self.assertEqual(zero.tags, "ein_test zwei_test drei_test")
+        self.assertEqual(zero.tags, "ein_test, zwei_test, drei_test")
         self.assertEqual(zero.homepage, "http://startpage.com")
 
 
