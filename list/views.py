@@ -18,9 +18,15 @@ def index(request):
         locations = paginator.page(1)
     except EmptyPage:
         locations = paginator.page(paginator.num_pages)
+    tag_list = Location.tags.split(' ')
+    tags = []
+    for tag in tag_list:
+        tags.append({'name': tag,
+                     'included': True})
 
     context = {'locations': locations,
-               'there_are_public_locations': there_are_public_locations}
+               'there_are_public_locations': there_are_public_locations,
+               'tags': tags}
     return render(request,
                   'list/index.html',
                   context)
