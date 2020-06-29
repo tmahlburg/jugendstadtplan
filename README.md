@@ -30,29 +30,3 @@ $ python3 manage.py runserver
 *(nur eins von beidem ist nötig)*
 
 Die Seite ist dann unter http://localhost:8000 zu erreichen. Außerdem wird ein user account mit den Anmeldedaten admin:admin angelegt. NUR FÜR ENTWICKLUNGSZWECKE!
-
-## Links
-
-**python:**
-
-- [Hitchhiker's Guide to Python](https://docs.python-guide.org) - fortgeschrittenere Sachen, auch zu guter Einrichtung
-
-**django:**
-
-- [Django Doku](https://docs.djangoproject.com/en/3.0/)
-- [Django unittests](https://docs.djangoproject.com/en/3.0/topics/testing/)
-
-**docker:**
-
-- [Docker Doku](https://docs.docker.com)
-- [docker-compose Doku](https://docs.docker.com/compose/)
-- [Installationsanleitungen](https://docs.docker.com/install/#supported-platforms)
-
-**github actions:**
-- [GitHub Actions Doku](https://help.github.com/en/actions)
-
-**Spectre.css:**
-- [Spectre.css Doku](https://picturepan2.github.io/spectre/getting-started.html)
-
-**Leaflet:**
-- [Leaflet Doku](https://leafletjs.com/reference-1.6.0.html)
