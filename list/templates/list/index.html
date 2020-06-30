@@ -1,35 +1,76 @@
 {% extends 'base.html' %}
+{% load filters %}
 
 {% block title %}Alle Orte{% endblock %}
 
 {% block content %}
-    <div class="container">
+	<div class="container">
+	{% if tags %}
+		<script>
+			function reload_with_filter() {
+				var params = "";
+				{% for tag in tags %}
+					var {{ tag.name  }} = document.getElementById("{{ tag.name  }}");
+					if ({{ tag.name  }}.checked) {
+						params += "{{ tag.name }},";
+					}
+				{% endfor %}
+				if (params != "") {
+					params = params.slice(0,-1);
+					var url = window.location.href;
+					url = url.split('?')[0];
+					url = url + '?tags=' + params;
+					window.location.href = url;
+				} else {
+					var warning = document.getElementById("empty-tags-warning");
+					warning.removeAttribute("hidden");
+				}
+			}
+		</script>
+	{% endif %}
         <div class="columns">
             <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
                 <h1>Alle Orte</h1>
+                {% if tags %}
+                    <div class="form-group">
+                    <label class="form-label">Orte aus folgenden Kategorien werden angezeigt:</label>
+                    {% for tag in tags %}
+                        <label class="form-checkbox form-inline">
+                            <input type="checkbox" id="{{ tag.name  }}" {% if tag.included %}checked{% endif %}>
+                                <i class="form-icon"></i> {{ tag.name }}
+                        </label>
+                    {% endfor %}
+                    <button class="btn" onclick="reload_with_filter()">Anwenden</button>
+					<div hidden id="empty-tags-warning">
+						<div class="toast toast-warning">
+							Du hast keine Kategorie ausgewählt. Wähle mindestens eine aus und versuch es nochmal!
+						</div>
+					</div>
+                </div>
+                {% endif %}
                 {% if there_are_public_locations %}
                     {% for location in locations %}
-                    	{% if location.is_public %}
-	                        <div class="divider"></div>
-	                        <div class="columns">
-	                            {% if location.picture %}<div class="column col-8">{% endif %}
-	                                <section>
-	                                <h3>{{ location.title }}</h3>
-	                                <ul style="list-style-type:none">
-	                                    <li><i>Tags: {{ location.tags }}</i></li>
-	                                    {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
-	                                    {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
-	                                    {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
-	                                    <li><a href="/map/{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
-	                                </ul>
-	                                </section>
-	                            {% if location.picture %}
-	                            </div>
-	                            <div class="column col-4">
-	                                <img src="../{{ location.picture  }}" class="img-responsive" alt="{{ location.title  }}">
-	                            </div>
-	                            {% endif %}
-	                        </div>
+                        {% if location.is_public %}
+                            <div class="divider"></div>
+                            <div class="columns">
+                                {% if location.picture %}<div class="column col-8">{% endif %}
+                                    <section>
+                                    <h3>{{ location.title }}</h3>
+                                    <ul style="list-style-type:none">
+                                        <li><i>Tags: {% for tag in location.tags|split:" " %}<a href="/list/?tags={{ tag }}">{{ tag  }}</a> {% endfor %}</i></li>
+                                        {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
+                                        {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
+                                        {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
+                                        <li><a href="/map/{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
+                                    </ul>
+                                    </section>
+                                {% if location.picture %}
+                                </div>
+                                <div class="column col-4">
+                                    <img src="../{{ location.picture  }}" class="img-responsive" alt="{{ location.title  }}">
+                                </div>
+                                {% endif %}
+                            </div>
                         {% endif %}
                     {% endfor %}
                 {% else %}
