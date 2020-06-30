@@ -35,7 +35,7 @@ def index(request):
     tag_list = Location.tags.split(' ')
     tags = []
     for tag in tag_list:
-        if (recieved_tags and tag in recieved_tags):
+        if (not recieved_tags or tag in recieved_tags):
             included = True
         else:
             included = False
