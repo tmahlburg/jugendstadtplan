@@ -7,14 +7,15 @@
     <script src="{% static 'map/script.js' %}"></script>
     {% if messages %}
         {% for message in messages %}
-        <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position: fixed;z-index: 999;">
+        <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position:fixed;z-index:999;">
             <button class="btn btn-clear float-right" onclick="close_toast(this)"></button>
             {{ message  }}
         </div>
         {% endfor %}
 
     {% endif %}
-    <div id="map" style="height:100vh;"></div>
+    <div id="map" style="height:100vh;">
+	</div>
         <script>
     		setup_map({{ viewpoint  }});
     		{% if all_locations %}
@@ -45,5 +46,25 @@
 	                {% endif %}
 	            {% endfor %}
             {% endif %}
-        </script>
+			var filter_menu = L.control({position: 'bottomleft'});
+			filter_menu.onAdd = function (map) {
+    			var div = L.DomUtil.create('ul', 'menu');
+    			div.innerHTML =
+    				'<li class="divider" data-content="KATEGORIEN"></li>' +
+	  				'<li class="menu-item">' +
+	    				'<label class="form-checkbox">' +
+	      					'<input type="checkbox">' +
+	      					'<i class="form-icon"></i>' +
+	      					'treff' +
+						'</label>' +
+	  				'</li>' +
+	  				'<li class="divider"></li>' +
+	  				'<li class="menu-item">' +
+		  				'<button class="btn" style="width:100%">Anwenden</button>' +
+	  				'</li>';
+    			div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+    			return div;
+			};
+			filter_menu.addTo(map);
+	</script>
 {% endblock %}
