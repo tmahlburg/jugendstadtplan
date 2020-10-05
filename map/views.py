@@ -41,6 +41,7 @@ def index(request, viewpoint='54.095166,13.3710154'):
                      'included': included})
 
     tags_json = dumps(tags)
+
     context = {'locations': location_list,
                'viewpoint': viewpoint,
                'tags': tags,

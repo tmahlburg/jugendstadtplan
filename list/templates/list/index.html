@@ -1,37 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load filters %}
 
 {% block title %}Alle Orte{% endblock %}
 
 {% block content %}
+    <script src="{% static 'script.js' %}"></script>
 	<div class="container">
-	{% if tags %}
-		<script>
-			function reload_with_filter() {
-				var params = "";
-				{% for tag in tags %}
-					var {{ tag.name  }} = document.getElementById("{{ tag.name  }}");
-					if ({{ tag.name  }}.checked) {
-						params += "{{ tag.name }},";
-					}
-				{% endfor %}
-				if (params != "") {
-					params = params.slice(0,-1);
-					var url = window.location.href;
-					url = url.split('?')[0];
-					url = url + '?tags=' + params;
-					window.location.href = url;
-				} else {
-					var warning = document.getElementById("empty-tags-warning");
-					warning.removeAttribute("hidden");
-				}
-			}
-		</script>
-	{% endif %}
         <div class="columns">
             <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
                 <h1>Alle Orte</h1>
                 {% if tags %}
+                	<script>var tags_json = JSON.parse("{{ tags_json|escapejs }}"); </script>
                     <div class="form-group">
                     <label class="form-label">Orte aus folgenden Kategorien werden angezeigt:</label>
                     {% for tag in tags %}
@@ -40,7 +20,7 @@
                                 <i class="form-icon"></i> {{ tag.name }}
                         </label>
                     {% endfor %}
-                    <button class="btn" onclick="reload_with_filter()">Anwenden</button>
+                    <button class="btn" onclick="reload_with_filter(tags_json)">Anwenden</button>
 					<div hidden id="empty-tags-warning">
 						<div class="toast toast-warning">
 							Du hast keine Kategorie ausgewählt. Wähle mindestens eine aus und versuch es nochmal!
