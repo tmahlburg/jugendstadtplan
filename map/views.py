@@ -39,10 +39,9 @@ def index(request, viewpoint='54.095166,13.3710154'):
         tags.append({'name': tag,
                      'included': included})
 
-
     context = {'locations': location_list,
                'viewpoint': viewpoint,
-               'tags': tag_list}
+               'tags': tags}
     return render(request,
                   'map/index.html',
                   context)
