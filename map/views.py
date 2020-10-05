@@ -30,7 +30,12 @@ def index(request, viewpoint='54.095166,13.3710154'):
     else:
         location_list = Location.objects.all().values()
 
-    tag_list = Location.tags.split(' ')
+    tag_list = []
+    for location in location_list:
+        if location['is_public']:
+            tag_list.extend(location['tags'].split(' '))
+
+    tag_list = list(set(tag_list))
     tags = []
     for tag in tag_list:
         if (not recieved_tags or tag in recieved_tags):

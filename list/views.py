@@ -22,10 +22,12 @@ def index(request):
                     title_list.append(location['title'])
     else:
         location_list = Location.objects.all().values()
+
     there_are_public_locations = False
     for location in location_list:
         if location['is_public']:
             there_are_public_locations = True
+
     paginator = Paginator(location_list, 10)
     try:
         locations = paginator.page(page)
@@ -33,7 +35,13 @@ def index(request):
         locations = paginator.page(1)
     except EmptyPage:
         locations = paginator.page(paginator.num_pages)
-    tag_list = Location.tags.split(' ')
+
+    tag_list = []
+    for location in location_list:
+        if location['is_public']:
+            tag_list.extend(location['tags'].split(' '))
+
+    tag_list = list(set(tag_list))
     tags = []
     for tag in tag_list:
         if (tag):
