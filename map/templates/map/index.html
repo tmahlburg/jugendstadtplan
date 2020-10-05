@@ -5,6 +5,7 @@
 
 {% block content %}
     <script src="{% static 'map/script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
     {% if messages %}
         {% for message in messages %}
         <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position:fixed;z-index:999;">
@@ -47,6 +48,7 @@
                 {% endfor %}
             {% endif %}
            	{% if tags %}
+           	var tags_json = JSON.parse("{{ tags_json|escapejs }}");
             var filter_menu = L.control({position: 'bottomleft'});
             filter_menu.onAdd = function (map) {
                 var div = L.DomUtil.create('ul', 'menu');
@@ -63,7 +65,7 @@
                     {% endfor %}
                     '<li class="divider"></li>' +
                     '<li class="menu-item">' +
-                        '<button class="btn" style="width:100%" onclick="reload_with_filter()">Anwenden</button>' +
+                        '<button class="btn" style="width:100%" onclick="reload_with_filter(tags_json)">Anwenden</button>' +
                     '</li>' +
 				 	'<div hidden id="empty-tags-warning"">' +
 				 		'<li class="divider"></li>' +
@@ -77,28 +79,4 @@
             filter_menu.addTo(map);
             {% endif %}
     </script>
-	{% if tags %}
-		<script>
-			// replace with global function
-			function reload_with_filter() {
-				var params = "";
-				{% for tag in tags %}
-					var {{ tag.name  }} = document.getElementById("{{ tag.name  }}");
-					if ({{ tag.name  }}.checked) {
-						params += "{{ tag.name }},";
-					}
-				{% endfor %}
-				if (params != "") {
-					params = params.slice(0,-1);
-					var url = window.location.href;
-					url = url.split('?')[0];
-					url = url + '?tags=' + params;
-					window.location.href = url;
-				} else {
-					var warning = document.getElementById("empty-tags-warning");
-					warning.removeAttribute("hidden");
-				}
-			}
-		</script>
-	{% endif %}
 {% endblock %}

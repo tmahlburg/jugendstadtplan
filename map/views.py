@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+from json import dumps
 
 from .models import Location
 from tagging.models import TaggedItem
@@ -39,9 +40,11 @@ def index(request, viewpoint='54.095166,13.3710154'):
         tags.append({'name': tag,
                      'included': included})
 
+    tags_json = dumps(tags)
     context = {'locations': location_list,
                'viewpoint': viewpoint,
-               'tags': tags}
+               'tags': tags,
+               'tags_json': tags_json}
     return render(request,
                   'map/index.html',
                   context)
