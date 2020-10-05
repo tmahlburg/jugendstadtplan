@@ -5,45 +5,78 @@
 
 {% block content %}
     <script src="{% static 'map/script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
     {% if messages %}
         {% for message in messages %}
-        <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position: fixed;z-index: 999;">
+        <div class="toast {% if message.tags %}toast-{{ message.tags  }}{% endif %}" style="position:fixed;z-index:999;">
             <button class="btn btn-clear float-right" onclick="close_toast(this)"></button>
             {{ message  }}
         </div>
         {% endfor %}
 
     {% endif %}
-    <div id="map" style="height:100vh;"></div>
+    <div id="map" style="height:100vh;">
+    </div>
         <script>
-    		setup_map({{ viewpoint  }});
-    		{% if all_locations %}
-	            var i = 0;
-	            var marker = [];
-            	{% for location in all_locations %}
-	            	{% if location.is_public %}
-			            marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
-			            popup_content = '<container style="width:10em">'
-			                            {% if location.picture %}
-			                            + '<img src="{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
-			                            {% endif %}
-			                            + '<strong>{{ location.title }}</strong><hr>'
-			                            + 'Tags: <i>{{ location.tags  }}</i><br>'
-			                            {% if location.homepage %}
-			                            + '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
-			                            {% endif %}
-			                            {% if location.address %}
-			                            + '{{ location.address|linebreaksbr  }}<br>'
-			                            {% endif %}
-			                            {% if location.opening_hours %}
-			                            + '{{ location.opening_hours|linebreaksbr  }}'
-			                            {% endif %}
-			                            + '</container>'
+            setup_map({{ viewpoint  }});
+            {% if locations %}
+                var i = 0;
+                var marker = [];
+                {% for location in locations %}
+                    {% if location.is_public %}
+                        marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
+                        popup_content = '<container style="width:10em">'
+                                        {% if location.picture %}
+                                        + '<img src="{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
+                                        {% endif %}
+                                        + '<strong>{{ location.title }}</strong><hr>'
+                                        + 'Tags: <i>{{ location.tags  }}</i><br>'
+                                        {% if location.homepage %}
+                                        + '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
+                                        {% endif %}
+                                        {% if location.address %}
+                                        + '{{ location.address|linebreaksbr  }}<br>'
+                                        {% endif %}
+                                        {% if location.opening_hours %}
+                                        + '{{ location.opening_hours|linebreaksbr  }}'
+                                        {% endif %}
+                                        + '</container>'
 
-			            marker[i].bindPopup(popup_content);
-			            i++;
-	                {% endif %}
-	            {% endfor %}
+                        marker[i].bindPopup(popup_content);
+                        i++;
+                    {% endif %}
+                {% endfor %}
             {% endif %}
-        </script>
+           	{% if tags %}
+           	var tags_json = JSON.parse("{{ tags_json|escapejs }}");
+            var filter_menu = L.control({position: 'bottomleft'});
+            filter_menu.onAdd = function (map) {
+                var div = L.DomUtil.create('ul', 'menu');
+                div.innerHTML =
+                    '<li class="divider" data-content="KATEGORIEN"></li>' +
+                    {% for tag in tags %}
+                    '<li class="menu-item">' +
+                        '<label class="form-checkbox">' +
+                            '<input type="checkbox" id="{{ tag.name }}" {% if tag.included %}checked{% endif %}>' +
+                            '<i class="form-icon"></i>' +
+                            '{{ tag.name }}' +
+                        '</label>' +
+                    '</li>' +
+                    {% endfor %}
+                    '<li class="divider"></li>' +
+                    '<li class="menu-item">' +
+                        '<button class="btn" style="width:100%" onclick="reload_with_filter(tags_json)">Anwenden</button>' +
+                    '</li>' +
+				 	'<div hidden id="empty-tags-warning"">' +
+				 		'<li class="divider"></li>' +
+						'<div class="toast toast-warning">' +
+							'Keine Kategorie ausgewählt.' +
+						'</div>' +
+					'</div>';
+    			L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+                return div;
+            };
+            filter_menu.addTo(map);
+            {% endif %}
+    </script>
 {% endblock %}

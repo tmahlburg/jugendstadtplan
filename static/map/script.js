@@ -6,7 +6,7 @@ function setup_map(viewpoint = [54.095166, 13.3710154], zoom = 13) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
 
-	L.control.zoom({position:'bottomleft'}).addTo(map);
+	L.control.zoom({position:'bottomright'}).addTo(map);
 	map.on('click', onMapClick);
 }
 

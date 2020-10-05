@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from json import dumps
 
 from map.models import Location
 from tagging.models import TaggedItem
@@ -43,11 +44,12 @@ def index(request):
             tags.append({'name': tag,
                          'included': included})
 
-    print("tags: ")
-    print(tags)
+    tags_json = dumps(tags)
+
     context = {'locations': locations,
                'there_are_public_locations': there_are_public_locations,
-               'tags': tags}
+               'tags': tags,
+               'tags_json': tags_json}
     return render(request,
                   'list/index.html',
                   context)
