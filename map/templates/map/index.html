@@ -73,7 +73,7 @@
 							'Keine Kategorie ausgewählt.' +
 						'</div>' +
 					'</div>';
-                //div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+    			L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
                 return div;
             };
             filter_menu.addTo(map);
