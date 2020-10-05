@@ -40,6 +40,8 @@
                                         {% if location.opening_hours %}
                                         + '{{ location.opening_hours|linebreaksbr  }}'
                                         {% endif %}
+                                        + '<hr>'
+	                                    + '<a href="/propose-change?id={{ location.id }}">Änderung vorschlagen</a>'
                                         + '</container>'
 
                         marker[i].bindPopup(popup_content);
