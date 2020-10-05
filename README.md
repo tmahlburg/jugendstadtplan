@@ -1,4 +1,5 @@
 # jugendstadtplan
+DIESE SOFTWARE BEFINDET SICH IN DER ALPHAPHASE UND IST NOCH NICHT FÜR DEN GEBRAUCH GEDACHT!
 
 ## Vorraussetzungen
 mit Docker: Docker, docker-compose
