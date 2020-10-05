@@ -36,12 +36,13 @@ def index(request):
     tag_list = Location.tags.split(' ')
     tags = []
     for tag in tag_list:
-        if (not recieved_tags or tag in recieved_tags):
-            included = True
-        else:
-            included = False
-        tags.append({'name': tag,
-                     'included': included})
+        if (tag):
+            if (not recieved_tags or tag in recieved_tags):
+                included = True
+            else:
+                included = False
+            tags.append({'name': tag,
+                         'included': included})
 
     tags_json = dumps(tags)
 
