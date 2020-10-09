@@ -38,6 +38,7 @@
                                     <h3>{{ location.title }}</h3>
                                     <ul style="list-style-type:none">
                                         <li><i>Tags: {% for tag in location.tags|split:" " %}<a href="/list/?tags={{ tag }}">{{ tag  }}</a> {% endfor %}</i></li>
+                                        {% if location.description %}<li><blockquote>{{ location.description }}</blockquote></li>{% endif %}
                                         {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
                                         {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
                                         {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}

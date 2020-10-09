@@ -5,5 +5,5 @@ from map.models import Location
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
-        fields = ('title', 'latitude', 'longitude', 'tags', 'picture',
+        fields = ('title', 'latitude', 'longitude', 'tags', 'description', 'picture',
                   'homepage', 'address', 'opening_hours')

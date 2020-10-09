@@ -14,6 +14,11 @@ class Location(models.Model):
 
     tags = TagField()
 
+    # short description, why the location should be on the map
+    description = models.TextField(null=True,
+                                   blank=True,
+                                   verbose_name='Was macht diesen Ort besonders?')
+
     # possible image
     picture = models.ImageField(upload_to='static/pictures/',
                                 null=True,
