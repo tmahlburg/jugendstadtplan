@@ -13,12 +13,14 @@ class LocationTestCase(TestCase):
                                 latitude=12.3587,
                                 longitude=5.1234,
                                 tags="test1, test2, test3",
-                                homepage="http://github.com")
+                                homepage="http://github.com",
+                                is_on_placem=True)
         Location.objects.create(title="Test near zero",
                                 latitude=-0.0001,
                                 longitude=0.0001,
                                 tags="ein_test zwei_test drei_test",
-                                homepage="http://startpage.com")
+                                homepage="http://startpage.com",
+                                is_on_placem=False)
 
     def test_objects_properly_created(self):
         regular = Location.objects.get(title="Test regular values")
@@ -27,10 +29,12 @@ class LocationTestCase(TestCase):
         self.assertEqual(regular.longitude, 5.1234)
         self.assertEqual(regular.tags, "test1, test2, test3")
         self.assertEqual(regular.homepage, "http://github.com")
+        self.assertEqual(regular.is_on_placem, True)
         self.assertEqual(zero.latitude, -0.0001)
         self.assertEqual(zero.longitude, 0.0001)
         self.assertEqual(zero.tags, "ein_test zwei_test drei_test")
         self.assertEqual(zero.homepage, "http://startpage.com")
+        self.assertEqual(zero.is_on_placem, False)
 
 
 class TestMap(TestCase):
