@@ -25,6 +25,7 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name='about.html')),
     path('map/', include('map.urls')),
     path('suggestion/', include('suggestion.urls')),
+    path('propose_change/', include('propose_change.urls')),
     path('', include('map.urls')),
     path('list/', include('list.urls')),
 ]

@@ -46,6 +46,8 @@
                                         {% if location.is_on_placem %}
                                         + '<i>Dieser Ort ist auch auf <a href="https://placem.de">PLACEm</a> zu finden</i>'
                                         {% endif %}
+                                        + '<hr>'
+	                                      + '<a href="/propose_change?id={{ location.id }}">Änderung vorschlagen</a>'
                                         + '</container>'
 
                         marker[i].bindPopup(popup_content);
