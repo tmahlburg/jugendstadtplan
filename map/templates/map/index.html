@@ -43,6 +43,9 @@
                                         {% if location.opening_hours %}
                                         + '{{ location.opening_hours|linebreaksbr  }}'
                                         {% endif %}
+                                        {% if location.is_on_placem %}
+                                        + '<i>Dieser Ort ist auch auf <a href="https://placem.de">PLACEm</a> zu finden</i>'
+                                        {% endif %}
                                         + '</container>'
 
                         marker[i].bindPopup(popup_content);

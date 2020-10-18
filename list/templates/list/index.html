@@ -40,9 +40,10 @@
                                         <li><i>Tags: {% for tag in location.tags|split:" " %}<a href="/list/?tags={{ tag }}">{{ tag  }}</a> {% endfor %}</i></li>
                                         {% if location.description %}<li><blockquote>{{ location.description }}</blockquote></li>{% endif %}
                                         {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
-                                        {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours  }}</li>{% endif %}
+                                        {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours|linebreaksbr  }}</li>{% endif %}
                                         {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
-                                        <li><a href="/map/{{ location.latitude  }},{{ location.longitude  }}">Auf der Karte zeigen</a></li>
+                                        {% if location.is_on_placem %}<li><i>Dieser Ort ist auch auf <a href="https://placem.de">PLACEm</a> zu finden.</i></li>{% endif %}
+                                        <li><a href="/map/{{ location.latitude  }},{{ location.longitude }}">Auf der Karte zeigen</a></li>
                                     </ul>
                                     </section>
                                 {% if location.picture %}
