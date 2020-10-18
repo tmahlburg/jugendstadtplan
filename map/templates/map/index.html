@@ -31,6 +31,9 @@
                                         {% endif %}
                                         + '<strong>{{ location.title }}</strong><hr>'
                                         + 'Tags: <i>{{ location.tags  }}</i><br>'
+                                        {% if location.description %}
+										+ '<blockquote>{{ location.description }}</blockquote><hr>'
+                                        {% endif %}
                                         {% if location.homepage %}
                                         + '<a href="{{ location.homepage  }}" target="_blank">Internetpräsenz</a><br>'
                                         {% endif %}
@@ -40,8 +43,11 @@
                                         {% if location.opening_hours %}
                                         + '{{ location.opening_hours|linebreaksbr  }}'
                                         {% endif %}
+                                        {% if location.is_on_placem %}
+                                        + '<i>Dieser Ort ist auch auf <a href="https://placem.de">PLACEm</a> zu finden</i>'
+                                        {% endif %}
                                         + '<hr>'
-	                                    + '<a href="/propose_change?id={{ location.id }}">Änderung vorschlagen</a>'
+	                                      + '<a href="/propose_change?id={{ location.id }}">Änderung vorschlagen</a>'
                                         + '</container>'
 
                         marker[i].bindPopup(popup_content);

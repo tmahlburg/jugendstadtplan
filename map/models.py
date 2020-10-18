@@ -14,6 +14,11 @@ class Location(models.Model):
 
     tags = TagField()
 
+    # short description, why the location should be on the map
+    description = models.TextField(null=True,
+                                   blank=True,
+                                   verbose_name='Was macht diesen Ort besonders?')
+
     # possible image
     picture = models.ImageField(upload_to='static/pictures/',
                                 null=True,
@@ -33,6 +38,9 @@ class Location(models.Model):
     opening_hours = models.TextField(null=True,
                                      blank=True,
                                      verbose_name='Öffnungszeiten')
+
+    is_on_placem = models.BooleanField(blank=True,
+                                       verbose_name='Dieser Ort ist auf PLACEm zu finden')
 
     is_public = models.BooleanField(default=False,
                                     verbose_name='Veröffentlicht')
