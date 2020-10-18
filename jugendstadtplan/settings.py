@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'map.apps.MapConfig',
     'list.apps.ListConfig',
     'suggestion.apps.SuggestionConfig',
+    'propose_change.apps.ProposeChangeConfig',
 ]
 
 MIDDLEWARE = [
