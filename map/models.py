@@ -39,5 +39,8 @@ class Location(models.Model):
                                      blank=True,
                                      verbose_name='Öffnungszeiten')
 
+    is_on_placem = models.BooleanField(blank=True,
+                                       verbose_name='Dieser Ort ist auf PLACEm zu finden')
+
     is_public = models.BooleanField(default=False,
                                     verbose_name='Veröffentlicht')
