@@ -5,7 +5,8 @@ from json import dumps
 from .models import Location
 from tagging.models import TaggedItem
 
-def index(request, viewpoint='54.095166,13.3710154'):
+
+def index(request, viewpoint='54.08950301403954,13.40512275695801'):
     try:
         viewpoint = str_to_viewpoint(viewpoint)
     except ValueError:
