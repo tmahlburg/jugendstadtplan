@@ -1,35 +1,66 @@
 {% extends 'base.html' %}
-{% load widget_tweaks %}
+{% load	widget_tweaks %}
 {% block title %}Neuen Ort vorschlagen{% endblock %}
 
 {% block content %}
-    <div class="container py-2">
-        <div class="columns">
-            <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
-                <h1>Neuen Ort vorschlagen</h1>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {% for field in form %}
-                    	{% if not field.label == "Latitude" and not field.label == "Longitude" or not lat and not lng %}
-	                        <div class="form-group">
-	                            {{ field.errors }}
-	                            <label for="{{ field.id_for_label }}" {% if field.label == "Dieser Ort ist auf PLACEm zu finden" %}class="form-checkbox"{% else %}class="form-label"{% endif %}>{% if not field.label == "Dieser Ort ist auf PLACEm zu finden" %}{{ field.label }}</label>{% endif %}
-	                            {{ field|add_class:'form-input' }}
-	                            {% if field.label == "Dieser Ort ist auf PLACEm zu finden" %}<i class="form-icon"></i>{{ field.label }}</label>{% endif %}
-	                            {% if field.help_text %}
-	                                <p class="help">{{ field.help_text|safe }}</p>
-	                            {% endif %}
-	                        </div>
-	                    {% elif field.label == "Latitude" %}
-							<input type="hidden" name="latitude" value="{{ lat  }}" />
-	                    {% elif field.label == "Longitude" %}
-							<input type="hidden" name="longitude" value="{{ lng  }}" />
-                    	{% endif %}
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">Vorschlagen</button>
-                </form>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+<div class="container py-2">
+	<div class="columns">
+		<div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+			<h1>Neuen Ort vorschlagen</h1>
+			<form method="POST"	enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.non_field_errors }}
+				{% for field in	form %}
+					{% if not field.label == "Latitude"	and	not	field.label	== "Longitude" or not lat and not lng %}
+						<div class="form-group">
+							{{ field.errors	}}
+							<label for="{{ field.id_for_label }}"
+							{% if field.label == "Dieser Ort ist auf PLACEm	zu finden" %}
+								class="form-checkbox"
+							{% else	%}
+								class="form-label"
+							{% endif %}
+							>
+								{% if field.label == "Dieser Ort ist auf PLACEm	zu finden" %}
+									<i class="form-icon"></i>
+									{{ field.label }}
+							</label>
+								{% endif %}
+							{% if not field.label == "Dieser Ort ist auf PLACEm	zu finden" %}
+										{{ field.label }}
+							</label>
+								<div class="columns">
+									<div class="column">
+										{{ field|add_class:'form-input'	}}
+									</div>
+							{% endif %}
+									{% if field.help_text %}
+										<div class="coloumn	col-auto">
+											<div class="popover	popover-left">
+												<button	class="btn btn-primary">Hilfe</button>
+												<div class="popover-container">
+													<div class="card">
+														<div class="card-body">
+															{{ field.help_text|safe	}}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								{% if not field.label == "Dieser Ort ist auf PLACEm	zu finden" %}
+								</div>
+								{% endif %}
+						</div>
+					{% elif	field.label	== "Latitude" %}
+						<input type="hidden" name="latitude" value="{{ lat	}}"	/>
+					{% elif	field.label	== "Longitude" %}
+						<input type="hidden" name="longitude" value="{{	lng	 }}" />
+					{% endif %}
+				{% endfor %}
+				<button	type="submit" class="btn btn-primary">Vorschlagen</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock	%}
