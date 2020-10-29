@@ -1,106 +1,162 @@
 {% extends 'base.html' %}
-{% load static %}
-{% load filters %}
+{% load	static %}
+{% load	filters	%}
 
 {% block title %}Alle Orte{% endblock %}
 
 {% block content %}
-    <script src="{% static 'script.js' %}"></script>
-	<div class="container">
-        <div class="columns">
-            <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
-                <h1>Alle Orte</h1>
-                {% if tags %}
-                	<script>var tags_json = JSON.parse("{{ tags_json|escapejs }}"); </script>
-                    <div class="form-group">
-                    <label class="form-label">Orte mit folgenden Tags werden angezeigt:</label>
-                    {% for tag in tags %}
-                        <label class="form-checkbox form-inline">
-                            <input type="checkbox" id="{{ tag.name  }}" {% if tag.included %}checked{% endif %}>
-                                <i class="form-icon"></i> {{ tag.name }}
-                        </label>
-                    {% endfor %}
-                    <button class="btn" onclick="reload_with_filter(tags_json)">Anwenden</button>
-					<div hidden id="empty-tags-warning">
+<script	src="{%	static 'script.js' %}"></script>
+
+<div class="container">
+	<div class="columns">
+		<div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+			<h1>Alle Orte</h1>
+			{% if tags %}
+				<script>var	tags_json =	JSON.parse("{{ tags_json|escapejs }}");</script>
+
+				<div class="form-group">
+					<label class="form-label">Orte mit folgenden Tags werden angezeigt:</label>
+					{% for tag in tags %}
+						<label class="form-checkbox	form-inline">
+							<input type="checkbox" id="{{ tag.name	}}"
+							{% if tag.included %}
+								checked
+							{% endif %}>
+							<i class="form-icon"></i>
+							{{ tag.name	}}
+						</label>
+					{% endfor %}
+					<button	class="btn"	onclick="reload_with_filter(tags_json)">Anwenden</button>
+					<div hidden	id="empty-tags-warning">
 						<div class="toast toast-warning">
-							Du hast keine Tags ausgewählt. Wähle mindestens eine aus und versuch es nochmal!
+							Du hast	keine Tags ausgewählt. Wähle mindestens	eine aus und versuch es	nochmal.
 						</div>
 					</div>
-                </div>
-                {% endif %}
-                {% if there_are_public_locations %}
-                    {% for location in locations %}
-                        {% if location.is_public %}
-                            <div class="divider"></div>
-                            <div class="columns">
-                                {% if location.picture %}<div class="column col-8">{% endif %}
-                                    <section>
-                                    <h3>{{ location.title }}</h3>
-                                    <ul style="list-style-type:none">
-                                        <li><i>Tags: {% for tag in location.tags|split:" " %}<a href="/list/?tags={{ tag }}">{{ tag  }}</a> {% endfor %}</i></li>
-                                        {% if location.description %}<li><blockquote>{{ location.description }}</blockquote></li>{% endif %}
-                                        {% if location.address %}<li>{{ location.address|linebreaksbr  }}</li>{% endif %}
-                                        {% if location.opening_hours %}<li> Öffnungszeiten:<br /> {{ location.opening_hours|linebreaksbr  }}</li>{% endif %}
-                                        {% if location.homepage %}<li><a href="{{ location.homepage  }}">Link</a></li>{% endif %}
-                                        {% if location.is_on_placem %}<li><i>Dieser Ort ist auch auf <a href="https://placem.de">PLACEm</a> zu finden.</i></li>{% endif %}
-                                        <li><a href="/map/{{ location.latitude  }},{{ location.longitude }}">Auf der Karte zeigen</a></li>
-                                    </ul>
-                                    </section>
-                                {% if location.picture %}
-                                </div>
-                                <div class="column col-4">
-                                    <img src="../{{ location.picture  }}" class="img-responsive" alt="{{ location.title  }}">
-                                </div>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    <div class="empty">
-                        <div class="empty-icon">
-                            <i class="icon icon-location"></i>
-                        </div>
-                        <p class="empty-title h5">Es wurden noch keine Orte hinzugefügt...</p>
-                        <p class="empty-subtitle">Das kann man aber ändern!</p>
-                        <div class="empty-action">
-                            <button class="btn btn-primary" onclick="location.href='/suggestion/'">Ort vorschlagen</button>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    {% if locations.has_other_pages %}
-        <ul class="pagination" style="display:flex;justify-content:center;align-items:center;">
-            {% if locations.has_previous %}
-                <li class="page-item">
-                    <a href="?page={{ locations.previous_page_number }}">
-                        <i class="icon icon-arrow-left"></i>
-                    </a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a href="#"><i class="icon icon-arrow-left"></i></a>
-                </li>
-            {% endif %}
-            {% for i in locations.paginator.page_range %}
-                {% if locations.number == i %}
-                    <li class="page-item active"><a href="#">{{ i }}</a></li>
-                {% else %}
-                    <li class="page-item"><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if locations.has_next %}
-                <li class="page-item">
-                    <a href="?page={{ locations.next_page_number }}">
-                        <i class="icon icon-arrow-right"></i>
-                    </a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a href="#"><i class="icon icon-arrow-right"></i></a>
-                </li>
-            {% endif %}
-        </ul>
-    {% endif %}
-{% endblock %}
+				</div>
+			{% endif %}
+			{% if there_are_public_locations %}
+				{% for location	in locations %}
+					{% if location.is_public %}
+						<div class="divider"></div>
+							<div class="columns">
+								{% if location.picture %}
+									<div class="column col-8">
+								{% endif %}
+										<section>
+											<h3>{{ location.title }}</h3>
+											<ul	style="list-style-type:none">
+												<li><i>Tags:
+													{% for tag in location.tags|split:"	" %}
+														<a href="/list/?tags={{	tag	}}">
+															{{ tag	}}
+														</a>
+													{% endfor %}
+												</i></li>
+												{% if location.description %}
+													<li><blockquote>
+														{{ location.description	}}
+													</blockquote></li>
+												{% endif %}
+												{% if location.address %}
+													<li>
+														{{ location.address|linebreaksbr  }}
+													</li>
+												{% endif %}
+												{% if location.opening_hours %}
+													<li> Öffnungszeiten:<br	/>
+														{{ location.opening_hours|linebreaksbr	}}
+													</li>
+												{% endif %}
+												{% if location.homepage	%}
+													<li><a href="{{	location.homepage  }}">
+														Homepage
+													</a></li>
+												{% endif %}
+												{% if location.facebook	%}
+													<li><a href="{{	location.facebook  }}">
+														Facebook
+													</a></li>
+												{% endif %}
+												{% if location.instagram %}
+													<li><a href="{{	location.instagram	}}">
+														Instagram
+													</a></li>
+												{% endif %}
+												{% if location.tiktok %}
+													<li><a href="{{	location.tiktok	 }}">
+														TikTok
+													</a></li>
+												{% endif %}
+												{% if location.twitter %}
+													<li><a href="{{	location.twitter  }}">
+														Twitter
+													</a></li>
+												{% endif %}
+												{% if location.is_on_placem	%}
+													<li><i>
+														Dieser Ort ist auch	auf	<a href="https://placem.de">PLACEm</a> zu finden.
+													</i></li>
+												{% endif %}
+												<li><a href="/map/{{ location.latitude	}},{{ location.longitude }}">
+													Auf	der	Karte zeigen
+												</a></li>
+											</ul>
+										</section>
+								{% if location.picture %}
+									</div>
+									<div class="column col-4">
+										<img src="../{{	location.picture  }}" class="img-responsive" alt="{{ location.title	 }}">
+									</div>
+								{% endif %}
+							</div>
+					{% endif %}
+				{% endfor %}
+			{% else	%}
+				<div class="empty">
+					<div class="empty-icon">
+						<i class="icon icon-location"></i>
+					</div>
+					<p class="empty-title h5">Es wurden	noch keine Orte	hinzugefügt...</p>
+					<p class="empty-subtitle">Das kann man aber	ändern!</p>
+					<div class="empty-action">
+						<button	class="btn btn-primary"	onclick="location.href='/suggestion/'">Ort vorschlagen</button>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% if locations.has_other_pages	%}
+	<ul	class="pagination" style="display:flex;justify-content:center;align-items:center;">
+		{% if locations.has_previous %}
+			<li	class="page-item">
+				<a href="?page={{ locations.previous_page_number }}">
+					<i class="icon icon-arrow-left"></i>
+				</a>
+			</li>
+		{% else	%}
+			<li	class="page-item disabled">
+				<a href="#"><i class="icon icon-arrow-left"></i></a>
+			</li>
+		{% endif %}
+		{% for i in	locations.paginator.page_range %}
+			{% if locations.number == i	%}
+				<li	class="page-item active"><a	href="#">{{	i }}</a></li>
+			{% else	%}
+				<li	class="page-item"><a href="?page={{	i }}">{{ i }}</a></li>
+			{% endif %}
+		{% endfor %}
+		{% if locations.has_next %}
+			<li	class="page-item">
+				<a href="?page={{ locations.next_page_number }}">
+					<i class="icon icon-arrow-right"></i>
+				</a>
+			</li>
+		{% else	%}
+			<li	class="page-item disabled">
+				<a href="#"><i class="icon icon-arrow-right"></i></a>
+			</li>
+		{% endif %}
+	</ul>
+{% endif %}
+{% endblock	%}
