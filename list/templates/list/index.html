@@ -13,7 +13,7 @@
                 {% if tags %}
                 	<script>var tags_json = JSON.parse("{{ tags_json|escapejs }}"); </script>
                     <div class="form-group">
-                    <label class="form-label">Orte aus folgenden Kategorien werden angezeigt:</label>
+                    <label class="form-label">Orte mit folgenden Tags werden angezeigt:</label>
                     {% for tag in tags %}
                         <label class="form-checkbox form-inline">
                             <input type="checkbox" id="{{ tag.name  }}" {% if tag.included %}checked{% endif %}>
@@ -23,7 +23,7 @@
                     <button class="btn" onclick="reload_with_filter(tags_json)">Anwenden</button>
 					<div hidden id="empty-tags-warning">
 						<div class="toast toast-warning">
-							Du hast keine Kategorie ausgewählt. Wähle mindestens eine aus und versuch es nochmal!
+							Du hast keine Tags ausgewählt. Wähle mindestens eine aus und versuch es nochmal!
 						</div>
 					</div>
                 </div>

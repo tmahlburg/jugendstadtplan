@@ -61,7 +61,7 @@
             filter_menu.onAdd = function (map) {
                 var div = L.DomUtil.create('ul', 'menu');
                 div.innerHTML =
-                    '<li class="divider" data-content="KATEGORIEN"></li>' +
+                    '<li class="divider" data-content="TAGS"></li>' +
                     {% for tag in tags %}
                     '<li class="menu-item">' +
                         '<label class="form-checkbox">' +
@@ -78,7 +78,7 @@
 				 	'<div hidden id="empty-tags-warning"">' +
 				 		'<li class="divider"></li>' +
 						'<div class="toast toast-warning">' +
-							'Keine Kategorie ausgewählt.' +
+							'Keine Tags ausgewählt.' +
 						'</div>' +
 					'</div>';
     			L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
