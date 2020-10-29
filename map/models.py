@@ -28,7 +28,26 @@ class Location(models.Model):
     # possible homepage
     homepage = models.URLField(null=True,
                                blank=True,
-                               verbose_name='Internetpräsenz')
+                               verbose_name='Homepage')
+
+    # possible facebook
+    facebook = models.URLField(null=True,
+                               blank=True,
+                               verbose_name='Facebook')
+    # possible instagram
+    instagram = models.URLField(null=True,
+                               blank=True,
+                               verbose_name='Instagram')
+
+    # possible tiktok
+    homepage = models.URLField(null=True,
+                               blank=True,
+                               verbose_name='TikTok')
+
+    # possible twitter
+    homepage = models.URLField(null=True,
+                               blank=True,
+                               verbose_name='Twitter')
 
     # possible address
     address = models.TextField(null=True, blank=True, verbose_name='Adresse')
