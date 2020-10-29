@@ -40,12 +40,12 @@ class Location(models.Model):
                                verbose_name='Instagram')
 
     # possible tiktok
-    homepage = models.URLField(null=True,
+    tiktok = models.URLField(null=True,
                                blank=True,
                                verbose_name='TikTok')
 
     # possible twitter
-    homepage = models.URLField(null=True,
+    twitter = models.URLField(null=True,
                                blank=True,
                                verbose_name='Twitter')
 
