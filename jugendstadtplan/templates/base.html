@@ -13,19 +13,21 @@
 	<!-- Leaflet -->
 	<link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">
 	<script src="{% static 'leaflet/leaflet.js' %}"></script>
+	<!-- Font -->
+	<link rel="stylesheet" href="{% static 'fonts/style.css' %}">
 </head>
 <body>
 	<div class="container" style="position:{% block navbar_position %}relative{% endblock %};z-index:999;background:white">
 		<!-- Header -->
 		<header class="navbar">
   			<section class="navbar-section">
-				<a href="/" class="navbar-brand mr-2">Jugendstadtplan</a>
-				<a href="/list/" class="btn btn-link">Alle Orte</a>
-				<a href="/about/" class="btn btn-link">Über</a>
-				<a href="/impressum/" class="btn btn-link">Impressum</a>
+				<a href="/" class="navbar-brand mr-2" style="font-family:'SUBSCRIBER Regular';font-size:39px">Jugendstadtplan</a>
+				<a href="/list/" class="btn btn-link" style="font-family:'SUBSCRIBER Regular';font-size:26px">Alle Orte</a>
+				<a href="/about/" class="btn btn-link" style="font-family:'SUBSCRIBER Regular';font-size:26px">Über</a>
+				<a href="/impressum/" class="btn btn-link" style="font-family:'SUBSCRIBER Regular';font-size:26px">Impressum</a>
   			</section>
   			<section class="navbar-section">
-	  			<a href="/admin/" class="btn btn-link">Verwaltung</a>
+	  			<a href="/admin/" class="btn btn-link" style="font-family:'SUBSCRIBER Regular';font-size:26px">Verwaltung</a>
   			</section>
 		</header>
 	</div>
