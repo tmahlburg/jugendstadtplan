@@ -7,6 +7,6 @@ services:
     build: .
     command: ./manage.sh setup_docker
     volumes:
-      - .:/code
+      - .:/app
     ports:
       - "8000:8000"
