@@ -20,19 +20,15 @@ setup_docker () {
 	python manage.py runserver 0.0.0.0:8000
 }
 
-# manages docker startup for production environments
-setup_prod () {
-	docker-compose down -v
-	docker-compose -f docker-compose.prod.yml down -v
-	docker-compose -f docker-compose.prod.yml up -d --build
-	docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
-    docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
+# run gunicorn for production
+run_gunicorn () {
+	gunicorn jugendstadtplan.wsgi
 }
 
 case "$1" in
 	setup_admin) setup_admin ;;
 	setup_docker) setup_docker ;;
-	setup_prod) setup_prod ;;
-	*) echo "Specify command: setup_admin or setup_docker"
+	run_gunicorn) run_gunicorn ;;
+	*) echo "Specify command: setup_admin, setup_docker or run_gunicorn"
 		return 1 ;;
 esac
