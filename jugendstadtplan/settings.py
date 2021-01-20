@@ -134,3 +134,6 @@ STATICFILES_DIRS = [
 
 # Tagging settings
 FORCE_LOWERCASE_TAGS = True
+
+# ssl setting
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
