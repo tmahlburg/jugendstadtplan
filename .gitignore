@@ -130,3 +130,6 @@ dmypy.json
 
 # ignore pictures
 static/pictures/
+
+# ignore static
+static/
