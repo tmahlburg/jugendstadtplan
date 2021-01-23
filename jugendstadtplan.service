@@ -1,0 +1,13 @@
+[Unit]
+Description=Serves jugendstadtplan using gunicorn
+After=network.target
+
+[Service]
+User=YOUR USERNAME
+Group=www-data
+WorkingDirectory=/path/to/jugendstadtplan
+ExecStart=pipenv run /path/to/jugendstadtplan/manage.sh run_gunicorn
+
+
+[Install]
+WantedBy=multi-user.target
