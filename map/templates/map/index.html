@@ -123,6 +123,7 @@
                       + '</ul>'
                       + '<button class="btn show-xl" onclick="document.getElementById(\'modal\').classList.add(\'active\')">Tags auswählen...</button>'; // if there isn't
             L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+            L.DomEvent.on(div, 'wheel', L.DomEvent.stopPropagation);
             return div;
         };
         filter_menu.addTo(map);
