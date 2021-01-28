@@ -71,6 +71,8 @@
         var filter_menu = L.control({position: 'bottomleft'});
         filter_menu.onAdd = function (map) {
         var div = L.DomUtil.create('ul', 'menu');
+        div.style.maxHeight = "250px";
+        div.style.overflow = "auto";
         div.innerHTML = '<li class="divider" data-content="TAGS"></li>'
                         {% for tag in tags %}
                         + '<li class="menu-item">'
