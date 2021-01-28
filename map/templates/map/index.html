@@ -15,7 +15,33 @@
         </div>
     {% endfor %}
 {% endif %}
+{% if tags %}
 <div id="map" style="height:100vh;"></div>
+<div class="modal" id="modal">
+  <ul class="modal-body menu" style="max-height:60%;overflow:auto">
+    <li class="divider" data-content="TAGS"></li>
+    {% for tag in tags %}
+    <li class="menu-item">
+       <label class="form-checkbox">
+         <input type="checkbox" id="{{ tag.name }}-small" {% if tag.included %}checked{% endif %}>
+         <i class="form-icon"></i>
+         {{ tag.name }}
+       </label>
+    </li>
+    {% endfor %}
+    <li class="divider"></li>
+    <li class="menu-item">
+      <button class="btn" style="width:100%" onclick="close_and_reload()">Anwenden</button>
+    </li>
+    <div hidden id="empty-tags-warning">
+      <li class="divider"></li>
+      <div class="toast toast-warning">
+        Keine Tags ausgewählt.
+      </div>
+    </div>
+  </ul>
+</div>
+{% endif %}
 <script>
     // TODO: move this to external script
     setup_map({{ viewpoint  }});
@@ -70,33 +96,41 @@
         var tags_json = JSON.parse("{{ tags_json|escapejs }}");
         var filter_menu = L.control({position: 'bottomleft'});
         filter_menu.onAdd = function (map) {
-        var div = L.DomUtil.create('ul', 'menu');
+        var div = L.DomUtil.create('div');
         div.style.maxHeight = "250px";
         div.style.overflow = "auto";
-        div.innerHTML = '<li class="divider" data-content="TAGS"></li>'
+        div.innerHTML = '<ul class="menu hide-xl">' // if there is enough space
+        			  + '<li class="divider" data-content="TAGS"></li>'
                         {% for tag in tags %}
-                        + '<li class="menu-item">'
-                        +   '<label class="form-checkbox">'
-                        +       '<input type="checkbox" id="{{ tag.name }}" {% if tag.included %}checked{% endif %}>'
-                        +       '<i class="form-icon"></i>'
-                        +       '{{ tag.name }}'
-                        +   '</label>'
-                        + '</li>'
+                      + '<li class="menu-item">'
+                      +   '<label class="form-checkbox">'
+                      +       '<input type="checkbox" id="{{ tag.name }}" {% if tag.included %}checked{% endif %}>'
+                      +       '<i class="form-icon"></i>'
+                      +       '{{ tag.name }}'
+                      +   '</label>'
+                      + '</li>'
                         {% endfor %}
-                        + '<li class="divider"></li>'
-                        + '<li class="menu-item">'
-                        +   '<button class="btn" style="width:100%" onclick="reload_with_filter(tags_json)">Anwenden</button>'
-                        + '</li>'
-                        + '<div hidden id="empty-tags-warning"">'
-                        +   '<li class="divider"></li>'
-                        +   '<div class="toast toast-warning">'
-                        +       'Keine Tags ausgewählt.'
-                        +   '</div>'
-                        + '</div>';
+                      + '<li class="divider"></li>'
+                      + '<li class="menu-item">'
+                      +   '<button class="btn" style="width:100%" onclick="reload_with_filter(tags_json, false)">Anwenden</button>'
+                      + '</li>'
+                      + '<div hidden id="empty-tags-warning">'
+                      +   '<li class="divider"></li>'
+                      +   '<div class="toast toast-warning">'
+                      +       'Keine Tags ausgewählt.'
+                      +   '</div>'
+                      + '</div>'
+                      + '</ul>'
+                      + '<button class="btn show-xl" onclick="document.getElementById(\'modal\').classList.add(\'active\')">Tags auswählen...</button>'; // if there isn't
             L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
             return div;
         };
         filter_menu.addTo(map);
+        function close_and_reload() {
+        	document.getElementById("modal").classList.remove("active");
+        	tags_json = JSON.parse("{{ tags_json|escapejs }}");
+        	reload_with_filter(tags_json, true);
+        }
     {% endif %}
 </script>
 {% endblock %}
