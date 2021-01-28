@@ -1,8 +1,12 @@
 // This file contains js used by multiple apps
-function reload_with_filter(tags) {
+function reload_with_filter(tags, small) {
 	var params = "";
+	var suffix = "";
+	if (small) {
+		suffix = "-small";
+	}
 	for (var i = 0; i < tags.length; i++) {
-		var tag_checkbox = document.getElementById(tags[i].name);
+		var tag_checkbox = document.getElementById(tags[i].name + suffix);
 		if (tag_checkbox.checked) {
 			params += tags[i].name + ",";
 		}
