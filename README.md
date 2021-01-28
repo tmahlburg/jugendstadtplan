@@ -1,5 +1,5 @@
 # jugendstadtplan
-Diese Software befindet sicher aktuell in der Betaphase. Eine gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
+Diese Software befindet sich aktuell in der Betaphase. Eine gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
 
 ## Vorraussetzungen
 mit Docker: Docker, docker-compose
