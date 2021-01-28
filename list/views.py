@@ -10,10 +10,19 @@ from tagging.models import TaggedItem
 
 
 def index(request: HttpRequest) -> HttpResponse:
+    """
+    Returns a HTTP Response containing a page of a list with all the locations
+    in the database and a list of all their tags.
+
+    :param request: The request asking for the view.
+    :type request: HttpRequest
+    :return: The response containing the list view.
+    :rtype: HttpResponse
+    """
     recieved_tags = request.GET.get('tags')
     page = request.GET.get('page', 1)
     if (recieved_tags):
-        location_list = normalize_tags(recieved_tags)
+        location_list = get_locations_from_tags(recieved_tags)
     else:
         location_list = Location.objects.all().values()
 
@@ -38,7 +47,16 @@ def index(request: HttpRequest) -> HttpResponse:
                   context)
 
 
-def normalize_tags(recieved_tags: str) -> List[Location]:
+def get_locations_from_tags(recieved_tags: str) -> List[Location]:
+    """
+    Returns all locations that correspond to the given tags, which are
+    contained in a string, seperated by a , character.
+
+    :param recieved_tags: The string containing the tags.
+    :type recieved_tags: str
+    :return: The locations that match the given tags.
+    :rtype: List[Location]
+    """
     recieved_tags = recieved_tags.split(',')
     location_list = []
     title_list = []
@@ -53,6 +71,14 @@ def normalize_tags(recieved_tags: str) -> List[Location]:
 
 
 def there_are_public_locations(location_list: List[Location]) -> bool:
+    """
+    Checks if there are public locations.
+
+    :param location_list: Locations to check.
+    :type locaction_list: List[Location]
+    :return: True if there are public locations, False if there aren't.
+    :rtype: bool
+    """
     for location in location_list:
         if location['is_public']:
             return True
@@ -61,10 +87,22 @@ def there_are_public_locations(location_list: List[Location]) -> bool:
 
 def build_tag_list(locations: List[Location],
                    recieved_tags: str) -> List[Dict[str, bool]]:
+    """
+    Builds the the list of tags that match any public location.
+
+    :param locations: The list of locations the tags could match.
+    :type locations: List[Location]
+    :param recieved_tags: Tags that are definitely included.
+    :type recieved_tags: str
+    :return: All tags and the information if they are included or not.
+    :rtype: List[Dict[str, bool]]
+    """
     tag_list = []
     for location in locations:
         if location['is_public']:
             tag_list.extend(location['tags'].split(' '))
+
+    recieved_tags = recieved_tags.split(',')
 
     tag_list = list(set(tag_list))
     tags = []
