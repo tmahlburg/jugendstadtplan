@@ -102,13 +102,11 @@ def build_tag_list(locations: List[Location],
         if location['is_public']:
             tag_list.extend(location['tags'].split(' '))
 
-    recieved_tags = recieved_tags.split(',')
-
     tag_list = list(set(tag_list))
     tags = []
     for tag in tag_list:
         if (tag):
-            if (not recieved_tags or tag in recieved_tags):
+            if (not recieved_tags or tag in recieved_tags.split(',')):
                 included = True
             else:
                 included = False
