@@ -58,7 +58,7 @@
                                 + '<strong>{{ location.title }}</strong><hr>'
                                 + 'Tags: <i>{{ location.tags  }}</i><br>'
                                 {% if location.description %}
-                                + '<blockquote>{{ location.description }}</blockquote><hr>'
+                                + '<blockquote>{{ location.description|linebreaksbr }}</blockquote><hr>'
                                 {% endif %}
                                 {% if location.homepage %}
                                 + '<a href="{{ location.homepage  }}" target="_blank">Homepage</a></br>'
