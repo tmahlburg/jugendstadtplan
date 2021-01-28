@@ -3,30 +3,30 @@
 {% block title %}Neuen Ort vorschlagen{% endblock %}
 
 {% block content %}
-    <div class="container py-2">
-        <div class="columns">
-            <div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
-                <h1>Änderung vorschlagen</h1>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {% for field in form %}
-                    	{% if not field.label == "ID des zu ändernden Ortes" or not location_id %}
-	                        <div class="form-group">
-	                            {{ field.errors }}
-	                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-	                            {{ field|add_class:'form-input' }}
-	                            {% if field.help_text %}
-	                                <p class="help">{{ field.help_text|safe }}</p>
-	                            {% endif %}
-	                        </div>
-	                    {% elif field.label == "ID des zu ändernden Ortes" %}
+	<div class="container py-2">
+		<div class="columns">
+			<div class="column col-7 col-xl-8 col-lg-9 col-md-10 col-xs-12 col-sm-12 col-mx-auto">
+				<h1>Änderung vorschlagen</h1>
+				<form method="POST"	enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					{% for field in	form %}
+						{% if not field.label == "ID des zu	ändernden Ortes" or	not	location_id	%}
+							<div class="form-group">
+								{{ field.errors	}}
+								<label for="{{ field.id_for_label }}" class="form-label">{{	field.label	}}</label>
+								{{ field|add_class:'form-input'	}}
+								{% if field.help_text %}
+									<p class="help">{{ field.help_text|safe	}}</p>
+								{% endif %}
+							</div>
+						{% elif	field.label	== "ID des zu ändernden	Ortes" %}
 							<input type="hidden" name="location_to_change" value="{{ location_id }}" />
-                    	{% endif %}
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">Änderung vorschlagen</button>
-                </form>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+						{% endif %}
+					{% endfor %}
+					<button	type="submit" class="btn btn-primary">Änderung vorschlagen</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock	%}
