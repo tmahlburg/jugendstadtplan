@@ -31,7 +31,7 @@
     {% endfor %}
     <li class="divider"></li>
     <li class="menu-item">
-      <button class="btn" style="width:100%" onclick="close_and_reload()">Anwenden</button>
+      <button class="btn" style="width:100%" onclick="close_and_reload('{{ tags_json|escapejs }}')">Anwenden</button>
     </li>
     <div hidden id="empty-tags-warning">
       <li class="divider"></li>
@@ -43,7 +43,6 @@
 </div>
 {% endif %}
 <script>
-    // TODO: move this to external script
     setup_map({{ viewpoint  }});
     {% if locations %}
         var i = 0;
@@ -127,11 +126,6 @@
             return div;
         };
         filter_menu.addTo(map);
-        function close_and_reload() {
-        	document.getElementById("modal").classList.remove("active");
-        	tags_json = JSON.parse("{{ tags_json|escapejs }}");
-        	reload_with_filter(tags_json, true);
-        }
     {% endif %}
 </script>
 {% endblock %}
