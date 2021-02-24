@@ -36,10 +36,11 @@ def index(request: HttpRequest,
 
     if (recieved_tags):
         location_list = get_locations_from_tags(recieved_tags)
+        tags = build_tag_list(Location.objects.all().values(), recieved_tags)
     else:
         location_list = Location.objects.all().values()
+        tags = build_tag_list(location_list, recieved_tags)
 
-    tags = build_tag_list(location_list, recieved_tags)
     tags_json = dumps(tags)
 
     context = {'locations': location_list,
