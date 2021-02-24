@@ -83,12 +83,12 @@ def get_locations_from_tags(recieved_tags: str) -> List[Location]:
     location_list = []
     title_list = []
     for tag in recieved_tags:
-        locations = (TaggedItem.objects.get_by_model(Location,
-                                                     tag).values())
+        locations = (TaggedItem.objects.get_by_model(Location, tag).values())
         for location in locations:
             if location['title'] not in title_list:
                 location_list.append(location)
                 title_list.append(location['title'])
+    location_list = sorted(location_list, key=lambda k: k['title'])
     return location_list
 
 
