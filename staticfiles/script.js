@@ -23,9 +23,15 @@ function reload_with_filter(tags, small) {
 	}
 }
 
-function close_modal_and_reload()	{
+function close_modal_and_reload() {
 	document.getElementById("modal").classList.remove("active");
 	tags_json =	JSON.parse("{{ tags_json|escapejs }}");
 	reload_with_filter(tags_json, true);
 }
 
+function uncheck_all() {
+	checkboxes = document.getElementsByName("tag");
+	checkboxes.forEach(function(checkbox) {
+		checkbox.checked = false;
+	});
+}
