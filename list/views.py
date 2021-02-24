@@ -24,7 +24,7 @@ def index(request: HttpRequest) -> HttpResponse:
     if (recieved_tags):
         location_list = get_locations_from_tags(recieved_tags)
     else:
-        location_list = Location.objects.all().values()
+        location_list = Location.objects.order_by('title').values()
 
     paginator = Paginator(location_list, 10)
     try:
