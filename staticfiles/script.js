@@ -23,9 +23,9 @@ function reload_with_filter(tags, small) {
 	}
 }
 
-function close_modal_and_reload() {
+function close_modal_and_reload(tags) {
 	document.getElementById("modal").classList.remove("active");
-	tags_json =	JSON.parse("{{ tags_json|escapejs }}");
+	tags_json =	JSON.parse(tags);
 	reload_with_filter(tags_json, true);
 }
 
