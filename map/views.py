@@ -11,7 +11,7 @@ from tagging.models import TaggedItem
 
 def index(request: HttpRequest,
           viewpoint: str =
-          '54.08950301403954,13.40512275695801') -> HttpResponse:
+          '54.08950301403954,13.40512275695801,14') -> HttpResponse:
     """
     Returns a HTTP repsonse with the map view, using all the public locations,
     the given or default viewpoint and all the used tags.
@@ -25,12 +25,13 @@ def index(request: HttpRequest,
     :rtype: HttpResponse
     """
     try:
-        viewpoint = str_to_viewpoint(viewpoint)
+        viewpoint, zoom = str_to_viewpoint(viewpoint)
     except ValueError:
         messages.error(request,
                        'Die angegebenen Koordinaten sind nicht erreichbar.\n'
                        + 'Karte wird auf den Koordinaten 0, 0 zentriert.')
         viewpoint = [0, 0]
+        zoom = 14
 
     recieved_tags = request.GET.get('tags')
 
@@ -45,6 +46,7 @@ def index(request: HttpRequest,
 
     context = {'locations': location_list,
                'viewpoint': viewpoint,
+               'zoom': zoom,
                'tags': tags,
                'tags_json': tags_json}
     return render(request,
@@ -56,18 +58,19 @@ def str_to_viewpoint(viewpoint: str) -> List[float]:
     """
     Creates a viewpoint from a string.
 
-    :param viewpoint: Viewpoint as a string, formatted like this: 'lat,long'
+    :param viewpoint: Viewpoint as a string, formatted like this:
+        'lat,long,zoom'
     :type viewpoint: str
-    :return: Viewpoint as list: [lat, long]
-    :rtype: List[float]
+    :return: Viewpoint as list: [lat, long] and zoom
+    :rtype: List[float], int
     """
     # split on ,
     viewpoint = viewpoint.split(',')
     # convert str to float
     viewpoint = [float(coord) for coord in viewpoint]
-    if (abs(viewpoint[0]) > 90 or abs(viewpoint[1]) > 90):
+    if (abs(viewpoint[0]) > 90 or abs(viewpoint[1]) > 90 or viewpoint[2] < 0):
         raise ValueError('Viewpoint is not composed of valid coordinates.')
-    return viewpoint
+    return viewpoint[0:2], int(viewpoint[2])
 
 
 def get_locations_from_tags(recieved_tags: str) -> List[Location]:
