@@ -23,8 +23,10 @@ def index(request: HttpRequest) -> HttpResponse:
     page = request.GET.get('page', 1)
     if (recieved_tags):
         location_list = get_locations_from_tags(recieved_tags)
+        tags = build_tag_list(Location.objects.all().values(), recieved_tags)
     else:
-        location_list = Location.objects.all().values()
+        location_list = Location.objects.order_by('title').values()
+        tags = build_tag_list(location_list, recieved_tags)
 
     paginator = Paginator(location_list, 10)
     try:
@@ -34,7 +36,6 @@ def index(request: HttpRequest) -> HttpResponse:
     except EmptyPage:
         locations = paginator.page(paginator.num_pages)
 
-    tags = build_tag_list(location_list, recieved_tags)
     tags_json = dumps(tags)
 
     context = {'locations': locations,

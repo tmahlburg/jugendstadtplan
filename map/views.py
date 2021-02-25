@@ -36,10 +36,11 @@ def index(request: HttpRequest,
 
     if (recieved_tags):
         location_list = get_locations_from_tags(recieved_tags)
+        tags = build_tag_list(Location.objects.all().values(), recieved_tags)
     else:
         location_list = Location.objects.all().values()
+        tags = build_tag_list(location_list, recieved_tags)
 
-    tags = build_tag_list(location_list, recieved_tags)
     tags_json = dumps(tags)
 
     context = {'locations': location_list,
@@ -83,12 +84,11 @@ def get_locations_from_tags(recieved_tags: str) -> List[Location]:
     location_list = []
     title_list = []
     for tag in recieved_tags:
-        locations = (TaggedItem.objects.get_by_model(Location,
-                                                     tag).values())
+        locations = (TaggedItem.objects.get_by_model(Location, tag).values())
         for location in locations:
             if location['title'] not in title_list:
                 location_list.append(location)
-                title_list.append(location['title'])
+
     return location_list
 
 

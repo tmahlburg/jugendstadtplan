@@ -16,7 +16,7 @@
 					<label class="form-label">Orte mit folgenden Tags werden angezeigt:</label>
 					{% for tag in tags %}
 						<label class="form-checkbox	form-inline">
-							<input type="checkbox" id="{{ tag.name	}}"
+							<input type="checkbox" name="tag" id="{{ tag.name	}}"
 							{% if tag.included %}
 								checked
 							{% endif %}>
@@ -24,7 +24,10 @@
 							{{ tag.name	}}
 						</label>
 					{% endfor %}
-					<button	class="btn"	onclick="reload_with_filter(JSON.parse('{{ tags_json|escapejs }}'))">Anwenden</button>
+					<label class="form-label">
+					  <button	class="btn"	onclick="uncheck_all()">Alle abwählen</button>
+					  <button	class="btn btn-primary"	onclick="reload_with_filter(JSON.parse('{{ tags_json|escapejs }}'))">Anwenden</button>
+					</label>
 					<div hidden	id="empty-tags-warning">
 						<div class="toast toast-warning">
 							Du hast	keine Tags ausgewählt. Wähle mindestens	eine aus und versuch es	nochmal.
