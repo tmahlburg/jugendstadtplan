@@ -104,7 +104,7 @@ def build_tag_list(locations: List[Location],
 
     :param locations: The list of locations the tags could match.
     :type locations: List[Location]
-    :param recieved_tags: Tags that are definitely included.
+    :param recieved_tags: Tags that are definitely included divided by commas.
     :type recieved_tags: str
     :return: All tags and the information if they are included or not.
     :rtype: List[Dict[str, bool]]
@@ -124,4 +124,5 @@ def build_tag_list(locations: List[Location],
                 included = False
             tags.append({'name': tag,
                          'included': included})
+    tags = sorted(tags, key=lambda k: k['name'])
     return tags
