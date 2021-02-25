@@ -42,10 +42,11 @@ class TestMap(TestCase):
     Checks helper functions of the map app.
     """
     def test_str_to_viewpoint(self):
-        self.assertEqual(str_to_viewpoint('5.12,0.14'), [5.12, 0.14])
-        self.assertEqual(str_to_viewpoint('-10.11,-9.3'), [-10.11, -9.3])
-        self.assertEqual(str_to_viewpoint('2,-9'), [2, -9])
+        self.assertEqual(str_to_viewpoint('5.12,0.14,20'), ([5.12, 0.14], 20))
+        self.assertEqual(str_to_viewpoint('-10.11,-9.3,1'),
+                         ([-10.11, -9.3], 1))
+        self.assertEqual(str_to_viewpoint('2,-9,10.99'), ([2, -9], 10))
         with self.assertRaises(ValueError):
-            str_to_viewpoint('100.34,1')
+            str_to_viewpoint('100.34,1,9')
         with self.assertRaises(ValueError):
-            str_to_viewpoint('1,-90.01')
+            str_to_viewpoint('1,-90.01,14')
