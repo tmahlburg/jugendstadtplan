@@ -78,7 +78,8 @@ def get_locations_from_tags(recieved_tags: str) -> List[Location]:
     Returns all locations that correspond to the given tags, which are
     contained in a string, seperated by a , character.
 
-    :param recieved_tags: The string containing the tags.
+    :param recieved_tags: The string containing the tags seperated by
+        commas.
     :type recieved_tags: str
     :return: The locations that match the given tags.
     :rtype: List[Location]
