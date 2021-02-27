@@ -55,7 +55,7 @@
                 marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
                 popup_content = '<container style="width:10em">'
                                 {% if location.picture %}
-                                + '<img src="{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
+                                + '<img src="/{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
                                 {% endif %}
                                 + '<strong>{{ location.title }}</strong><hr>'
                                 + 'Tags: <i>{{ location.tags  }}</i><br>'
