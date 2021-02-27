@@ -1,26 +1,11 @@
 # jugendstadtplan
-Diese Software befindet sich aktuell in der Betaphase. Eine gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
 
-## Vorraussetzungen
+**ACHTUNG**: Diese Software befindet sich aktuell in der Betaphase. Eine gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
 
-python3, pip, pipenv
+Der Jugendstadtplan ist eine WebApp, die es Jugendlichen ermöglicht ihre Lieblingsorte zu teilen. Auch Projekten und Institutionen haben die Möglichkeit sich auf dem Plan einzutragen. Der Plan besteht dabei aus drei wesentlichen Teilen: Die Karte der Stadt, eine Liste aller auf der Karte eingezeichneter Orte und eine administrative Oberfläche, auf der die eingetragenen Orte verändert werden können. Die Möglichkeit für Nutzer selbst Orte vorzuschlagen, ist eine zentrale Funktion des Stadtplans: Jede:r kann mit einem einfachen Klick auf die Karte einen Ort an genau der angeklickten Stelle vorschlagen. Außerdem können Änderungen an bestehenden Orten vorgeschlagen werden. Nachdem die Vorschläge in der Administrationsoberfläche angenommen wurden, erscheinen diese ab sofort öffentlich auf der Karte. Ein flexibles Tagsystem ermöglicht die einfache Filterung der angezeigten Orte.
 
-## Ausführung
-**Repo holen:**
-```
-$ git clone https://github.com/tmahlburg/jugendstadtplan.git  # oder:
-$ git clone git@github.com:tmahlburg/jugendstadtplan.git
+Die Software ist Freie und Open-Source Software, die unter der [AGPL](https://www.gnu.org/licenses/agpl-3.0.de.html) lizensiert ist. Was das genau bedeutet, kann man vereinfacht zum Beispiel [hier](https://choosealicense.com/licenses/agpl-3.0/) nachlesen. Um nicht ganz von null anzufangen, baut der Jugendstadtplan auf bereits bestehenden Projekten auf: Als Web-Framework kommt [Django](https://www.djangoproject.com) zum Einsatz, das Kartenmaterial stammt von [OpenStreetMap](https://www.openstreetmap.org) und wird mit [Leaflet](https://leafletjs.com) bereit gestellt. Für einen kohärenten optischen Stil sorgt [spectre.css](https://picturepan2.github.io/spectre/).
 
-$ cd jugendstadtplan
-```
+Die Verwendung des Jugendstadtplans wird in [HOWTO.md](/HOWTO.md) kurz erklärt. Eine Möglichkeit die Software zu hosten wird in [HOWTO-deploy.md](/HOWTO-deploy.md) beschrieben. Was man wissen muss, um die Software weiterzuentwickeln oder anzupassen ist in [HOWTO-develop.md](/HOWTO-develop.md) beschrieben.
 
-**Ausführung**:
-```
-$ pipenv install
-$ pipenv shell
-$ python3 manage.py migrate
-$ ./manage.sh setup_admin
-$ python3 manage.py runserver
-```
-
-Die Seite ist dann unter http://localhost:8000 zu erreichen. Außerdem wird ein user account mit den Anmeldedaten admin:admin angelegt. NUR FÜR ENTWICKLUNGSZWECKE!
+Fehler können in den [Issues](https://github.com/tmahlburg/jugendstadtplan/issues) gemeldet werden. Hier können auch neue Funktionen vorgeschlagen werden. Im besten Fall, wenn Du programmieren kannst, behebst Du das Problem sogar selbst und erstellst dann einen *Pull Request*. Wie das genau geht, erklärt GitHub in dem Guide ["Forking Projects"](https://guides.github.com/activities/forking/).
