@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import ChangeProposalForm
+from map.models import Location
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -17,7 +18,6 @@ def index(request: HttpRequest) -> HttpResponse:
     :rtype: HttpResponse
     """
     location_id = request.GET.get('id')
-    print(location_id)
     if request.method == 'POST':
         form = ChangeProposalForm(request.POST)
         if form.is_valid():
@@ -26,5 +26,10 @@ def index(request: HttpRequest) -> HttpResponse:
     # it's a GET request
     form = ChangeProposalForm()
     form.fields['location_to_change'].initial = location_id
-    context = {'location_id': location_id, 'form': form}
+
+    location_title = ''
+    if (location_id):
+        location_title = Location.objects.get(pk=location_id).title
+
+    context = {'location_id': location_id, 'location_title': location_title, 'form': form}
     return render(request, 'propose_change/index.html', context)
