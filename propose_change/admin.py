@@ -11,5 +11,4 @@ class LocationAdmin(admin.ModelAdmin):
     def location_title(self, obj):
         return Location.objects.get(pk=obj.location_to_change.id).title
 
-    location_title.short_description(
-        'Ort zu dem eine Änderung vorgeschlagen wurde')
+    location_title.short_description = 'Ort zu dem eine Änderung vorgeschlagen wurde'
