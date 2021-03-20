@@ -14,6 +14,13 @@ class Location(models.Model):
 
     tags = TagField()
 
+    # by young people or for young people?
+    by_or_for = models.CharField(max_length=100,
+                                 default='by',
+                                 choices=(('by', 'von Jugendlichen'),
+                                          ('for', 'für Jugendliche')),
+                                 verbose_name='Dieser Ort wird eingetragen...')
+
     # short description, why the location should be on the map
     description = models.TextField(null=True,
                                    blank=True,
