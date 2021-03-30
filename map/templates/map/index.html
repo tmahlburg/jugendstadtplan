@@ -4,6 +4,7 @@
 {% block navbar_position %}fixed{% endblock %}
 
 {% block content %}
+
 <script src="{% static 'map/script.js' %}"></script>
 <script src="{% static 'script.js' %}"></script>
 
@@ -48,11 +49,23 @@
 <script>
     setup_map({{ viewpoint  }}, {{ zoom }});
     {% if locations %}
+        var light_marker = L.VectorMarkers.icon({
+            icon: 'dot-circle',
+            markerColor: '#F1F1FC'
+        });
+        var dark_marker = L.VectorMarkers.icon({
+            icon: 'dot-circle',
+            markerColor: '#5755D9'
+        });
         var i = 0;
         var marker = [];
         {% for location in locations %}
             {% if location.is_public %}
-                marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}]).addTo(map));
+                {% if location.by_or_for == "by" %}
+                    marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}], {icon: dark_marker}).addTo(map));
+                {% else %}
+                    marker.push(L.marker([{{ location.latitude }}, {{ location.longitude }}], {icon: light_marker}).addTo(map));
+                {% endif %}
                 popup_content = '<container style="width:10em">'
                                 {% if location.picture %}
                                 + '<img src="/{{ location.picture  }}" style="width:100%" alt="{{ location.title  }}">'
