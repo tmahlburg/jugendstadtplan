@@ -14,10 +14,27 @@
 			<h1>Alle Orte</h1>
 			{% if tags %}
 				<div class="form-group">
-					<label class="form-label">Orte mit folgenden Tags werden angezeigt:</label>
+					<label class="form-label">Es werden Orte</label>
+					<label class="form-checkbox">
+						<input type="checkbox" name="by-or-for" id="by"
+						{% if by_or_for.by %}
+							checked
+						{% endif %}>
+						<i class="form-icon"></i>
+						von Jugendlichen
+					</label>
+					<label class="form-checkbox form-inline">
+						<input type="checkbox" name="by-or-for" id="for"
+						{% if by_or_for.for %}
+							checked
+						{% endif %}>
+						<i class="form-icon"></i>
+						für Jugendliche
+					</label>
+					<label class="form-label">und mit folgenden Tags werden angezeigt:</label>
 					{% for tag in tags %}
 						<label class="form-checkbox	form-inline">
-							<input type="checkbox" name="tag" id="{{ tag.name	}}"
+							<input type="checkbox" name="tag" id="{{ tag.name }}"
 							{% if tag.included %}
 								checked
 							{% endif %}>
