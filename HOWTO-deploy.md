@@ -4,6 +4,25 @@ In diesem HOWTO wird eklärt, wie man das Projekt auf einem Server installiert u
 
 ## Holen
 
+Mit ```git```:
+```
+$ git clone https://github.com/tmahlburg/jugendstadtplan.git  # oder:
+$ git clone git@github.com:tmahlburg/jugendstadtplan.git
+
+$ cd jugendstadtplan
+```
+Mit ```wget```:
+```
+$ wget https://github.com/tmahlburg/jugendstadtplan/archive/refs/heads/master.zip
+$ unzip master
+
+$ cd master
+```
+
+## Inhalt der statischen Seiten ändern
+
+Der Inhalt der Seiten ```Über``` und ```Impressum``` kann in den Dateien ```jugendstadtplan/templates/about.html``` und ```jugendstadtplan/templates/impressum.html``` geändert werden.
+
 ## Abhängigkeiten
 
 Installiere certbot, python3-certbot-nginx, nginx und pipenv3.
