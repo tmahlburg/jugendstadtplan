@@ -1,6 +1,6 @@
 # jugendstadtplan
 
-**ACHTUNG**: Diese Software befindet sich aktuell in der Betaphase. Eine gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
+Diese Software kann produktiv eingesetzt werden. Eine seit mehreren Monaten gehostete Version ist unter [jugendstadtplan-greifswald.de](https://jugendstadtplan-greifswald.de) zu sehen.
 
 Der Jugendstadtplan ist eine WebApp, die es Jugendlichen ermöglicht ihre Lieblingsorte zu teilen. Auch Projekten und Institutionen haben die Möglichkeit sich auf dem Plan einzutragen. Der Plan besteht dabei aus drei wesentlichen Teilen: Die Karte der Stadt, eine Liste aller auf der Karte eingezeichneter Orte und eine administrative Oberfläche, auf der die eingetragenen Orte verändert werden können. Die Möglichkeit für Nutzer selbst Orte vorzuschlagen, ist eine zentrale Funktion des Stadtplans: Jede:r kann mit einem einfachen Klick auf die Karte einen Ort an genau der angeklickten Stelle vorschlagen. Außerdem können Änderungen an bestehenden Orten vorgeschlagen werden. Nachdem die Vorschläge in der Administrationsoberfläche angenommen wurden, erscheinen diese ab sofort öffentlich auf der Karte. Ein flexibles Tagsystem ermöglicht die einfache Filterung der angezeigten Orte.
 
