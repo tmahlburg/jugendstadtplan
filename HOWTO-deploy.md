@@ -46,11 +46,11 @@ Generiere ein Zertifikat für die gewünschte Domain:
 ```
 # certbot --nginx
 ```
-Unter Umständen muss zuvor noch ```/usr/sbin/``` dem ```PATH``` hinzugefügt werden.
+Unter Umständen muss zuvor noch ```/usr/sbin/``` dem ```PATH``` hinzugefügt werden. Das so erstellte Zertifikat läuft nach sechs Monaten ab. Danach kann das Skript ```renew_cert.sh``` einfach ausgeführt werden, um das Zertifikat zu aktualisieren.
 
 ## systemd service
 
-Diesem Repo liegt außerdem eine systemd-service-datei bei: ```jugendstadtplan.service```. Auf kompatiblen Platformen kann diese in ```/etc/systemd/system``` kopiert werden und dann mit
+Diesem Repo liegt außerdem eine systemd-service-datei bei: ```jugendstadtplan.service```. Auf kompatiblen Platformen kann diese in ```/etc/systemd/system``` kopiert werden und dann, nachdem die korrekten Pfade eingetragen wurden, mit
 ```
 # systemctl start jugendstadtplan
 ```
