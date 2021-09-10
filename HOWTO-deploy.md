@@ -4,13 +4,13 @@ In diesem HOWTO wird eklärt, wie man das Projekt auf einem Server installiert u
 
 ## Holen
 
-## Abhängigkeite
+## Abhängigkeiten
 
 Installiere certbot, python3-certbot-nginx, nginx und pipenv3.
 
 ## nginx
 
-Ändere den Pfad in der ```nginx.conf``` zum Pfad, der dem Pfad zum Projekt entspricht und kopiere die Datei in /etc/nginx/conf.d/:
+Ändere den Pfad in der ```nginx.conf``` zum Pfad, der dem Pfad zum Projekt entspricht, trage den gewünschten Domainnamen ein und kopiere die Datei in /etc/nginx/conf.d/:
 
 ```
 # rm /etc/nginx/conf.d/sites-enabled/default
@@ -47,3 +47,19 @@ Generiere ein Zertifikat für die gewünschte Domain:
 # certbot --nginx
 ```
 Unter Umständen muss zuvor noch ```/usr/sbin/``` dem ```PATH``` hinzugefügt werden.
+
+## systemd service
+
+Diesem Repo liegt außerdem eine systemd-service-datei bei: ```jugendstadtplan.service```. Auf kompatiblen Platformen kann diese in ```/etc/systemd/system``` kopiert werden und dann mit
+```
+# systemctl start jugendstadtplan
+```
+gestartet werden. Mit
+```
+# systemctl enable jugendstadtplan
+```
+wird der Service bei jedem Start des Servers mitgestartet. Mit
+```
+# systemctl restart jugendstadtplan
+```
+kann der Service neugestartet werden, z.B. nach einem Update.
