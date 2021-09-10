@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.contrib import messages
+from django.conf import settings
 
 from typing import List, Dict
 from json import dumps
@@ -11,7 +12,10 @@ from tagging.models import TaggedItem
 
 def index(request: HttpRequest,
           viewpoint: str =
-          '54.08950301403954,13.40512275695801,14') -> HttpResponse:
+          settings.DEFAULT_VIEWPOINT_LAT
+          + ','
+          + settings.DEFAULT_VIEWPOINT_LON
+          + ',14') -> HttpResponse:
     """
     Returns a HTTP repsonse with the map view, using all the public locations,
     the given or default viewpoint and all the used tags.

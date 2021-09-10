@@ -35,7 +35,7 @@ Jetzt muss die Datenbank migriert, die statischen Dateien gesammelt und ein Nutz
 ```
 $ ./manage.sh setup_prod
 ```
-Bevor das Projekt ausgeführt werden kann, muss noch die Datei ```prod.env``` mit einem SECRET_KEY und den ALLOWED_HOSTS gefüllt werden. Danach kann einfach der Server ausgeführt werden, und das Projekt ist erreichbar!
+Bevor das Projekt ausgeführt werden kann, muss noch die Datei ```prod.env``` mit einem SECRET_KEY und den ALLOWED_HOSTS gefüllt werden. Außerdem kann hier eingestellt werden, auf welche Koordinaten die Karte zentriert sein soll. Danach kann einfach der Server ausgeführt werden, und das Projekt ist erreichbar!
 ```
 $ ./manage.sh run_gunicorn
 ```
