@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 
 from .forms import ChangeProposalForm
 from map.models import Location
@@ -22,6 +23,25 @@ def index(request: HttpRequest) -> HttpResponse:
         form = ChangeProposalForm(request.POST)
         if form.is_valid():
             form.save()
+            #TODO: make recipients a setting
+            send_mail(subject='[jugendstadtplan]Änderungsvorschlag zu '
+                              + form.cleaned_data['location_to_change'].title,
+                      message='Hallo,\n'
+                              + 'es gab einen Änderungsvorschlag zu dem Ort '
+                              + 'mit dem Namen '
+                              + form.cleaned_data['location_to_change'].title
+                              + ':\n"'
+                              + form.cleaned_data['change_proposal']
+                              + '"\n'
+                              + 'In dieser Liste kann der Vorschlag angesehen '
+                              + 'werden:\n'
+                              + 'https://'
+                              + request.get_host()
+                              + '/admin/propose_chage/changeproposal/',
+                      from_email=None,
+                      recipient_list=[''],
+                      fail_silently=False,
+                     )
         return redirect('/map')
     # it's a GET request
     form = ChangeProposalForm()
