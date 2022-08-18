@@ -36,18 +36,18 @@ class Location(models.Model):
                                verbose_name='Facebook')
     # possible instagram
     instagram = models.URLField(null=True,
-                               blank=True,
-                               verbose_name='Instagram')
+                                blank=True,
+                                verbose_name='Instagram')
 
     # possible tiktok
     tiktok = models.URLField(null=True,
-                               blank=True,
-                               verbose_name='TikTok')
+                             blank=True,
+                             verbose_name='TikTok')
 
     # possible twitter
     twitter = models.URLField(null=True,
-                               blank=True,
-                               verbose_name='Twitter')
+                              blank=True,
+                              verbose_name='Twitter')
 
     # possible address
     address = models.TextField(null=True, blank=True, verbose_name='Adresse')

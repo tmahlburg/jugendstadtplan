@@ -26,12 +26,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY',
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS',
-                               default = '0.0.0.0 localhost 127.0.0.1').split(' ')
+                               default='0.0.0.0 localhost 127.0.0.1').split(' ')
 
 DEFAULT_VIEWPOINT_LAT = os.environ.get('DEFAULT_VIEWPOINT_LAT',
-                                       default = '54.08950301403954')
+                                       default='54.08950301403954')
 DEFAULT_VIEWPOINT_LON = os.environ.get('DEFAULT_VIEWPOINT_LON',
-                                       default = '13.40512275695801')
+                                       default='13.40512275695801')
 
 # Application definition
 
