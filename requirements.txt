@@ -1,5 +1,5 @@
-django<3.3
-pillow>=7.1
-django-widget-tweaks>=1.4
-django-tagging>=0.5
-gunicorn>=20.0
+django>=5.0
+pillow>=10.3
+django-widget-tweaks>=1.5
+tendenci-django-tagging>=0.6
+gunicorn>=21.2
