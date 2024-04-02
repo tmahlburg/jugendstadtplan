@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "<3.3"
+django = "*"
 pillow = "*"
 django-widget-tweaks = "*"
 gunicorn = "*"
-django-tagging = "*"
+tendenci-django-tagging = "*"
