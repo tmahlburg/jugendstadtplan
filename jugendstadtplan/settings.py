@@ -29,7 +29,7 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS',
                                default='0.0.0.0 localhost 127.0.0.1').split(' ')
 
 CSRF_TRUSTED_ORIGINS = os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS',
-                                      default='0.0.0.0 localhost 127.0.0.1').split(' ')
+                                      default='http://localhost http://0.0.0 http://127.0.0.1').split(' ')
 
 DEFAULT_VIEWPOINT_LAT = os.environ.get('DEFAULT_VIEWPOINT_LAT',
                                        default='54.08950301403954')
